@@ -6,7 +6,7 @@ let img;
 let time;
 function setup() {
     createCanvas(windowHeight, windowWidth);
-    img = loadImage('../img/book.jpg');
+    img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/book.jpg');
 }
 function draw() {
     background(255);
