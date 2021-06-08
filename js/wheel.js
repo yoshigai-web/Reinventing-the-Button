@@ -52,5 +52,5 @@ function mouseReleased() {
     
 }
 function mouseWheel(event) {
-    if(!bought && sliderX<mouseX && mouseX<sliderX+sliderWidth && sliderY<mouseY && mouseY<sliderY+sliderHeight)handleY-=event.delta*0.05;
+    if(!bought && sliderX<mouseX && mouseX<sliderX+sliderWidth && sliderY<mouseY && mouseY<sliderY+sliderHeight)handleY-=event.delta*0.01;
 }
