@@ -36,15 +36,15 @@ function draw() {
     }
 }
 function mousePressed() {
-    if (buttonX < mouseX && mouseX<buttonX + buttonWidth && buttonY < mouseY && mouseY < buttonY + buttonHeihgt) {
+    if (buttonX < mouseX && mouseX<buttonX + buttonWidth && buttonY < mouseY && mouseY < buttonY + buttonHeihgt && !bought) {
         dragged=true;
     }
-    if (bought) bought = false;
 }
 function mouseReleased(){
-    if (buttonX < mouseX && mouseX<buttonX + buttonWidth && buttonY < mouseY && mouseY < buttonY + buttonHeihgt) {
+    if (buttonX < mouseX && mouseX<buttonX + buttonWidth && buttonY < mouseY && mouseY < buttonY + buttonHeihgt && !bought) {
         cnt++;
         time=millis();
     }
     dragged=false;
+    if (bought) bought = false;
 }
