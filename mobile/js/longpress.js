@@ -12,7 +12,13 @@ function setup() {
 }
 function draw() {
     background(255);
-    
+    if(touches.length>0){
+        if (buttonX < touches[0].x && touches[0].x<buttonX + buttonWidth && buttonY < touches[0].y && touches[0].y < buttonY + buttonHeihgt) {
+            cnt++;
+        }
+    }else{
+        if(cnt>0)cnt--;
+    }
     if(cnt>MAX_cnt){
         bought=true;
         cnt=0;
@@ -41,10 +47,4 @@ function draw() {
 }
 function touchStarted() {
     if (bought) bought = false;
-
-    if (buttonX < touches[0].x && touches[0].x<buttonX + buttonWidth && buttonY < touches[0].y && touches[0].y < buttonY + buttonHeihgt) {
-        cnt++;
-    }else{
-        if(cnt>0)cnt--;
-    }
 }
