@@ -8,8 +8,7 @@ const MAX_cnt = 50;
 let time;
 function setup() {
     createCanvas(windowHeight, windowWidth);
-    img=loadImage("../../img/airpods.jpg")
-    // img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/book.jpg');
+    img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/airpods.jpg');
 }
 function draw() {
     background(255);
