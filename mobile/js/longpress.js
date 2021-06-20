@@ -13,9 +13,10 @@ function setup() {
 function draw() {
     background(255);
     if(touches.length>0){
-        if (buttonX < touches[0].x && touches[0].x<buttonX + buttonWidth && buttonY < touches[0].y && touches[0].y < buttonY + buttonHeihgt) {
-            cnt++;
-        }
+        cnt++;
+        // if (buttonX < touches[0].x && touches[0].x<buttonX + buttonWidth && buttonY < touches[0].y && touches[0].y < buttonY + buttonHeihgt) {
+        //     cnt++;
+        // }
     }else{
         if(cnt>0)cnt--;
     }
