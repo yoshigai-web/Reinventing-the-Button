@@ -9,3 +9,11 @@ function draw() {
         ellipse(touches[i].x, touches[i].y, 50, 50);
     }
 }
+
+function mousePressed() {
+    return false;
+}
+
+document.addEventListener('gesturestart', function (e) {
+    e.preventDefault();
+});
