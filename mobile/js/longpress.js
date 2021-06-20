@@ -1,5 +1,4 @@
-
-let buttonX = 100, buttonY = 650, buttonWidth = 250, buttonHeihgt = 50;
+let buttonX = 400, buttonY = 850, buttonWidth = 550, buttonHeihgt = 150;
 let bought = false;
 let img;
 
@@ -13,10 +12,9 @@ function setup() {
 function draw() {
     background(255);
     if(touches.length>0){
-        cnt++;
-        // if (buttonX < touches[0].x && touches[0].x<buttonX + buttonWidth && buttonY < touches[0].y && touches[0].y < buttonY + buttonHeihgt) {
-        //     cnt++;
-        // }
+        if (buttonX < touches[0].x && touches[0].x<buttonX + buttonWidth && buttonY < touches[0].y && touches[0].y < buttonY + buttonHeihgt) {
+            cnt++;
+        }
     }else{
         if(cnt>0)cnt--;
     }
@@ -31,18 +29,19 @@ function draw() {
         textSize(20);
         text("Click to back.", 200, 450);
     } else {
-        image(img, 75, 180, 150*2, 128*2);
+        image(img, 300, 180, 150*5, 128*5);
         fill(0);
-        textSize(25);
-        text("￥29,036", 170, 600);
+        textSize(150);
+        text("￥29,036", 170, 1000);
         // button
         fill(78, 212, 249, map(cnt, 0, MAX_cnt, 0, 255));
         rect(buttonX, buttonY, buttonWidth, buttonHeihgt, 5);
         fill("#322F20");
+        strokeWeight(20);
         rect(buttonX, buttonY+buttonHeihgt-5, map(cnt, 0, MAX_cnt, 0, buttonWidth), 5, 5);
         fill(0);
-        textSize(20);
-        text("購入", 180 + 20, buttonY + 30);
+        textSize(100);
+        text("購入", buttonX + 20, buttonY + 100);
     }
     
 }
