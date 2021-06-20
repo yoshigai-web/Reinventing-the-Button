@@ -1,4 +1,4 @@
-let buttonX = 400, buttonY = 850, buttonWidth = 550, buttonHeihgt = 150;
+let buttonX = 80, buttonY = 250, buttonWidth = 200, buttonHeihgt = 100;
 let bought = false;
 let img;
 
@@ -29,7 +29,7 @@ function draw() {
         textSize(20);
         text("Click to back.", 200, 450);
     } else {
-        image(img, 300, 180, 150*5, 128*5);
+        image(img, 100, 80, 150, 128);
         fill(0);
         textSize(150);
         text("￥29,036", 170, 1000);
@@ -37,13 +37,12 @@ function draw() {
         fill(78, 212, 249, map(cnt, 0, MAX_cnt, 0, 255));
         rect(buttonX, buttonY, buttonWidth, buttonHeihgt, 5);
         fill("#322F20");
-        strokeWeight(20);
+        strokeWeight(5);
         rect(buttonX, buttonY+buttonHeihgt-5, map(cnt, 0, MAX_cnt, 0, buttonWidth), 5, 5);
         fill(0);
-        textSize(100);
-        text("購入", buttonX + 20, buttonY + 100);
+        textSize(60);
+        text("購入", buttonX + 40, buttonY + 75);
     }
-    
 }
 function touchStarted() {
     if (bought) bought = false;
