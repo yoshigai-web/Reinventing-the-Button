@@ -4,7 +4,7 @@ let bought = false;
 let img;
 
 let cnt = 0;
-const MAX_cnt = 50;
+const MAX_cnt = 25;
 let time;
 function setup() {
     createCanvas(windowHeight, windowWidth);
@@ -25,8 +25,8 @@ function draw() {
     } else {
         image(img, 75, 180, 150*2, 128*2);
         fill(0);
-        textSize(20);
-        text("￥29,036", 180, 600);
+        textSize(25);
+        text("￥29,036", 170, 600);
         // button
         fill(78, 212, 249, map(cnt, 0, MAX_cnt, 0, 255));
         rect(buttonX, buttonY, buttonWidth, buttonHeihgt, 5);

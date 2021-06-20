@@ -4,7 +4,7 @@ let bought = false;
 let img;
 
 let cnt = 0;
-const MAX_cnt = 50;
+const MAX_cnt = 30;
 let time;
 function setup() {
     createCanvas(windowHeight, windowWidth);
