@@ -25,14 +25,14 @@ function draw() {
     if (bought) {
         fill(0);
         textSize(30);
-        text("Thank you for shopping!", 100, 400);
+        text("Thank you for shopping!", 15, 100);
         textSize(20);
-        text("Click to back.", 200, 450);
+        text("Click to back.", 120, 150);
     } else {
-        image(img, 100, 80, 150, 128);
+        image(img, 100, 45, 150, 128);
         fill(0);
-        textSize(150);
-        text("￥29,036", 170, 1000);
+        textSize(30);
+        text("￥29,036", 110, 220);
         // button
         fill(78, 212, 249, map(cnt, 0, MAX_cnt, 0, 255));
         rect(buttonX, buttonY, buttonWidth, buttonHeihgt, 5);
