@@ -8,8 +8,7 @@ const MAX_cnt = 50;
 let time;
 function setup() {
     createCanvas(windowHeight, windowWidth);
-    img=loadImage("../../img/travel.png");
-    // img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/travel.png');
+    img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/travel.png');
 }
 function draw() {
     background(255);
