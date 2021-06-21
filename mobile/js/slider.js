@@ -20,6 +20,10 @@ function draw() {
             sliderY = 10;
         }
     }
+    if(!dragged){
+        sliderY-=5;
+        if(sliderY<10)sliderY=10;
+    }
     if (bought) {
         fill(0);
         textSize(30);
@@ -57,7 +61,7 @@ function touchStarted() {
 }
 function touchEnded() {
     checkButtons();
-    if (!dragged) sliderY = 10;
+    // if (!dragged) sliderY = 10;
 }
 
 function checkButtons() {
