@@ -22,7 +22,8 @@ function draw() {
         fill(0);
         textSize(30);
         text("￥29,036", 110, 220);
-        // button
+        // draw button
+        strokeWeight(5);
         for(let i=0; i<buttonNum; i++){
             if(isPressed[i])fill(78, 212, 249);
             else fill(255);
