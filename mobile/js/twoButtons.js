@@ -30,6 +30,8 @@ function draw() {
             rect(buttonX[i], buttonY[i], buttonWidth, buttonHeihgt, 5);
         }
     }
+    fill(0);
+    text(!isPressed.includes(false), 100, 100);
 }
 function touchStarted() {
     if (bought)bought = false;
