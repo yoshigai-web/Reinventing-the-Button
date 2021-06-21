@@ -6,15 +6,18 @@ let img;
 let cnt = 0;
 const MAX_cnt = 5;
 let time;
+let boughtTime;
+
 function setup() {
     createCanvas(windowWidth, windowHeight);
     img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/comic.jpg');
 }
 function draw() {
     background(255);
-    if(cnt>=MAX_cnt){
-        bought=true;
-        cnt=0;
+    if (cnt >= MAX_cnt) {
+        bought = true;
+        boughtTime = millis();
+        cnt = 0;
     }
     if (bought) {
         fill(0);
@@ -29,19 +32,20 @@ function draw() {
         text("￥440", 180, 610);
         // button
         fill(78, 212, 249, map(cnt, 0, MAX_cnt, 0, 255));
+        strokeWeight(3);
         rect(buttonX, buttonY, buttonWidth, buttonHeihgt, 5);
         fill("#322F20");
-        rect(buttonX, buttonY+buttonHeihgt-5, map(cnt, 0, MAX_cnt, 0, buttonWidth), 5, 5);
+        rect(buttonX, buttonY + buttonHeihgt - 5, map(cnt, 0, MAX_cnt, 0, buttonWidth), 5, 5);
         fill(0);
         textSize(20);
         text("購入", 180 + 20, buttonY + 30);
     }
-    if(millis()-time>500 && frameCount%50==0 &&cnt>0)cnt--;
+    if (millis() - time > 500 && frameCount % 50 == 0 && cnt > 0) cnt--;
 }
 function mousePressed() {
-    if (buttonX < mouseX && mouseX<buttonX + buttonWidth && buttonY < mouseY && mouseY < buttonY + buttonHeihgt) {
+    if (buttonX < mouseX && mouseX < buttonX + buttonWidth && buttonY < mouseY && mouseY < buttonY + buttonHeihgt) {
         cnt++;
-        time=millis();
+        time = millis();
     }
-    if (bought) bought = false;
+    if (bought && millis() - boughtTime > 1000) bought = false;
 }
