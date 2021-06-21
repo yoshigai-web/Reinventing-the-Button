@@ -1,25 +1,30 @@
-let buttonNum=1;
-let buttonX = [120], buttonY = [300], buttonWidth = 70, buttonHeight = 200, dragID=[-1], sliderY=[10], isCompleted=[false]; // per buttons
-let py=[0, 0];  // per touches
+let buttonX, buttonY = 350, buttonWidth = 70, buttonHeight = 200, dragID=-1, sliderY=10, isCompleted=false;
+let py=0;
 let bought = false;
 let img;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
+    buttonX=width/2-buttonWidth/2;
     img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/airpods.jpg');
 }
 function draw() {
     background(255);
     for(let i=0; i<touches.length; i++){
-        sliderY[dragID.indexOf(i)]+=py[i]-touches[i].y;
-        if(sliderY[dragID.indexOf(i)]>buttonHeight){
-            sliderY[dragID.indexOf(i)]=buttonHeight;
-            isCompleted[i]=true;
-        }else{
-            isCompleted[i]=false;
+        if(i==dragID){
+            sliderY+=py-touches[i].y;
+            if(sliderY<10){
+                sliderY=10;
+            }
+            else if(sliderY>buttonHeight){
+                sliderY=buttonHeight;
+                isCompleted=true;
+            }else{
+                isCompleted=false;
+            }
         }
     }
-    if(!isCompleted.includes(false)){
+    if(isCompleted){
         bought=true;
         sliderY=[10];
     }
@@ -31,48 +36,47 @@ function draw() {
         textSize(20);
         text("Click to back.", width/2, 250);
     } else {
-        image(img, 100, 45, 150, 128);
+        imageMode(CENTER)
+        image(img, width/2, 150, 150*1.5, 128*1.5);
         fill(0);
         textSize(30);
-        textAlign(LEFT);
-        text("￥29,036", 110, 220);
+        textAlign(CENTER);
+        text("￥29,036 ", width/2, 300);
         // draw button
-        for(let i=0; i<buttonNum; i++){
-            // draw  background
-            if(dragID[i]!=-1)fill(216);
-            else fill(255);
-            rect(buttonX[i], buttonY[i], buttonWidth, buttonHeight, 5);
-            // draw progress bar
-            fill(78, 212, 249);
-            strokeWeight(0);
-            rect(buttonX[i], buttonY[i]+buttonHeight, buttonWidth, -sliderY[i], 5);
-            // draw border
-            noFill();
-            strokeWeight(5);
-            rect(buttonX[i], buttonY[i], buttonWidth, buttonHeight, 5);
-        }
+        // draw  background
+        if(dragID!=-1)fill(216);
+        else fill(255);
+        rect(buttonX, buttonY, buttonWidth, buttonHeight, 5);
+        // draw progress bar
+        fill(78, 212, 249);
+        strokeWeight(0);
+        rect(buttonX, buttonY+buttonHeight, buttonWidth, -sliderY, 5);
+        // draw border
+        noFill();
+        strokeWeight(5);
+        rect(buttonX, buttonY, buttonWidth, buttonHeight, 5);
     }
-    for(let i=0; i<touches.length; i++)py[i]=touches[i].y;
+    for(let i=0; i<touches.length; i++){
+        if(i==dragID)py=touches[i].y;
+    }
 }
 function touchStarted() {
-    for(let i=0; i<touches.length; i++)py[i]=touches[i].y;
-    if (bought)bought = false;
     checkButtons();
+    for(let i=0; i<touches.length; i++){
+        if(i==dragID)py=touches[i].y;
+    }
+    if (bought)bought = false;
 }
 function touchEnded(){
     checkButtons();
-    for(let i=0; i<buttonNum; i++){
-        if(dragID[i]==-1)sliderY[i]=10;
-    }
+    if(dragID==-1)sliderY=10;
 }
 
 function checkButtons(){
-    for(let i=0; i<buttonNum; i++)dragID[i]=-1;
+    dragID=-1;
     for(let i=0; i<touches.length; i++){
-        for(let j=0; j<buttonNum; j++){
-            if (buttonX[j] < touches[i].x && touches[i].x<buttonX[j] + buttonWidth && buttonY[j] < touches[i].y && touches[i].y < buttonY[j] + buttonHeight) {
-                dragID[j]=i;
-            }
+        if (buttonX < touches[i].x && touches[i].x<buttonX + buttonWidth && buttonY < touches[i].y && touches[i].y < buttonY + buttonHeight) {
+            dragID=i;
         }
     }
 }
