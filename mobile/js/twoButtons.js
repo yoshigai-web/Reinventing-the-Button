@@ -10,14 +10,7 @@ function setup() {
 }
 function draw() {
     background(255);
-    // if all buttons are pressed
-    for(let i=0; i<buttonNum; i++){
-        if(isPressed[i]==false)break;
-        if(i==buttonNum-1){
-            bought=true;
-            for(let j=0; j<buttonNum; j++)isPressed[j]=false;
-        }
-    }
+    
     if (bought) {
         fill(0);
         textSize(30);
@@ -35,24 +28,27 @@ function draw() {
             else fill(255);
             rect(buttonX[i], buttonY[i], buttonWidth, buttonHeihgt, 5);
         }
-        fill(0);
-        textSize(60);
-        text("購入", buttonX + 40, buttonY + 75);
     }
 }
 function touchStarted() {
     if (bought)bought = false;
 
-    for(let i=0; i<buttonNum; i++)isPressed[i]=false;
-    for(let i=0; i<touches.length; i++){
-        for(let j=0; j<buttonNum; j++){
-            if (buttonX[j] < touches[i].x && touches[i].x<buttonX[j] + buttonWidth && buttonY[j] < touches[i].y && touches[i].y < buttonY[j] + buttonHeihgt) {
-                isPressed[j]=true;
-            }
-        }
-    }
+    checkButtons();
 }
 function touchEnded(){
+    // if all buttons are pressed
+    for(let i=0; i<buttonNum; i++){
+        if(isPressed[i]==false)break;
+        if(i==buttonNum-1){
+            bought=true;
+            for(let j=0; j<buttonNum; j++)isPressed[j]=false;
+        }
+    }
+
+    checkButtons();
+}
+
+function checkButtons(){
     for(let i=0; i<buttonNum; i++)isPressed[i]=false;
     for(let i=0; i<touches.length; i++){
         for(let j=0; j<buttonNum; j++){
