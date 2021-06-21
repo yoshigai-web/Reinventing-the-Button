@@ -15,9 +15,9 @@ function draw() {
         fill(0);
         textSize(30);
         textAlign(CENTER);
-        text("Thank you for shopping!", width/2, 400);
+        text("Thank you for shopping!", width/2, 200);
         textSize(20);
-        text("Click to back.", width/2, 450);
+        text("Click to back.", width/2, 250);
     } else {
         image(img, 100, 45, 150, 128);
         fill(0);
