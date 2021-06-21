@@ -21,6 +21,7 @@ function draw() {
         cnt=0;
     }
     if (bought) {
+        background(0);
         fill(0);
         textSize(30);
         textAlign(CENTER);
