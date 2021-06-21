@@ -53,12 +53,11 @@ function draw() {
 function touchStarted() {
     if (bought)bought = false;
     checkButtons();
-
-    // if all buttons are pressed
     allPressed=!isPressed.includes(false);
 }
 function touchEnded(){
     checkButtons();
+    allPressed=!isPressed.includes(false);
 }
 
 function checkButtons(){
