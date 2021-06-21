@@ -33,19 +33,12 @@ function draw() {
 }
 function touchStarted() {
     if (bought)bought = false;
-
     checkButtons();
 }
 function touchEnded(){
-    // if all buttons are pressed
-    for(let i=0; i<buttonNum; i++){
-        if(isPressed[i]==false)break;
-        if(i==buttonNum-1){
-            bought=true;
-        }
-    }
-
     checkButtons();
+    // if all buttons are pressed
+    if(!isPressed.includes("false"))bought=true;
 }
 
 function checkButtons(){
