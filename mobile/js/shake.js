@@ -4,7 +4,7 @@ let bought = false;
 let img;
 
 let cnt = 0;
-const MAX_cnt = 100;
+const MAX_cnt = 50;
 let time;
 function setup() {
     btn = createButton("Motion");
