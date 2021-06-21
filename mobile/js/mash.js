@@ -1,4 +1,4 @@
-let buttonX, buttonY = 600, buttonWidth = 250, buttonHeihgt =100;
+let buttonX, buttonY = 450, buttonWidth = 250, buttonHeihgt =100;
 let bought = false;
 let img;
 
@@ -29,11 +29,11 @@ function draw() {
         text("Click to back.", width/2, 450);
     } else {
         imageMode(CENTER);
-        image(img, width/2, 300, 150*2, 128*2);
+        image(img, width/2, 200, 150*2, 128*2);
         fill(0);
         textSize(25);
         textAlign(CENTER);
-        text("￥29,036", width/2, 550);
+        text("￥29,036", width/2, 400);
         // button
         fill(78, 212, 249, map(cnt, 0, MAX_cnt, 0, 255));
         strokeWeight(3);
