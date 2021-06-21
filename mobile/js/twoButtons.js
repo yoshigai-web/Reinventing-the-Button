@@ -41,7 +41,6 @@ function touchEnded(){
         if(isPressed[i]==false)break;
         if(i==buttonNum-1){
             bought=true;
-            for(let j=0; j<buttonNum; j++)isPressed[j]=false;
         }
     }
 
