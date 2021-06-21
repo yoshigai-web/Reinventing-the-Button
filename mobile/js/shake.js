@@ -13,7 +13,7 @@ function setup() {
 	});
     createCanvas(windowWidth, windowHeight-20);
     img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/airpods.jpg');
-    setShakeThreshold(50);
+    // setShakeThreshold(50);
 }
 function draw() {
     background(255);
@@ -43,6 +43,8 @@ function mousePressed() {
     if (bought) bought = false;
 }
 function deviceShaken(){
-    if(millis()-time>200)cnt++;
-    time=millis();
+    if(millis()-time>200){
+        cnt++;
+        time=millis();
+    }
 }
