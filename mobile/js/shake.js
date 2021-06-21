@@ -10,6 +10,10 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/airpods.jpg');
     setShakeThreshold(50);
+    btn = createButton("Motion");
+	btn.mousePressed(function(){
+		DeviceOrientationEvent.requestPermission();
+	});
 }
 function draw() {
     background(255);
