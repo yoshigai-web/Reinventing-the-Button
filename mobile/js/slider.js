@@ -21,7 +21,7 @@ function draw() {
         }
     }
     if(!dragged){
-        sliderY-=5;
+        sliderY-=2;
         if(sliderY<10)sliderY=10;
     }
     if (bought) {
