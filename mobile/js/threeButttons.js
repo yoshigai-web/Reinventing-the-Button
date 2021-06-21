@@ -1,6 +1,6 @@
 // let buttonX = 80, buttonY = 250, buttonWidth = 200, buttonHeihgt = 100;
 let buttonNum=3;
-let buttonX = [30, 150, 280], buttonY = [250, 250, 250], buttonWidth = 70, buttonHeihgt = 100, isPressed=[false, false, false];
+let buttonX = [30, 155, 280], buttonY = [250, 250, 250], buttonWidth = 70, buttonHeihgt = 100, isPressed=[false, false, false];
 let bought = false;
 let img;
 
