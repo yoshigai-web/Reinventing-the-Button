@@ -1,4 +1,4 @@
-let buttonX, buttonY = 450, buttonWidth = 250, buttonHeihgt = 100;
+let buttonX, buttonY = 450, buttonWidth = 250, buttonHeight = 100;
 let bought = false;
 let img;
 
@@ -37,18 +37,18 @@ function draw() {
         // button
         fill(78, 212, 249, map(cnt, 0, MAX_cnt, 0, 255));
         strokeWeight(3);
-        rect(buttonX, buttonY, buttonWidth, buttonHeihgt, 5);
+        rect(buttonX, buttonY, buttonWidth, buttonHeight, 5);
         fill("#322F20");
-        rect(buttonX, buttonY + buttonHeihgt - 5, map(cnt, 0, MAX_cnt, 0, buttonWidth), 5, 5);
+        rect(buttonX, buttonY + buttonHeight - 5, map(cnt, 0, MAX_cnt, 0, buttonWidth), 5, 5);
         fill(0);
         textSize(30);
-        text("購入", width / 2, buttonY + buttonHeihgt / 2 + 10);
+        text("購入", width / 2, buttonY + buttonHeight / 2 + 10);
     }
     if (millis() - time > 500 && frameCount % 50 == 0 && cnt > 0) cnt--;
 }
 function touchStarted() {
     for (let i = 0; i < touches.length; i++) {
-        if (buttonX < touches[i].x && touches[i].x < buttonX + buttonWidth && buttonY < touches[i].y && mouseY < touches[i].y + buttonHeihgt) {
+        if (buttonX < touches[i].x && touches[i].x < buttonX + buttonWidth && buttonY < touches[i].y && mouseY < touches[i].y + buttonHeight) {
             cnt++;
             time = millis();
         }
