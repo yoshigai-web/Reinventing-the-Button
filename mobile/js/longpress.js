@@ -6,7 +6,7 @@ let cnt = 0;
 const MAX_cnt = 180;
 
 function setup() {
-    createCanvas(windowHeight, windowWidth);
+    createCanvas(windowWidth, windowHeight);
     img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/airpods.jpg');
 }
 function draw() {

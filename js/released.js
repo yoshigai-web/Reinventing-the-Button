@@ -7,7 +7,7 @@ let dragged=false;
 let cnt = 0;
 const MAX_cnt = 1;
 function setup() {
-    createCanvas(windowHeight, windowWidth);
+    createCanvas(windowWidth, windowHeight);
     img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/book.jpg');
 }
 function draw() {

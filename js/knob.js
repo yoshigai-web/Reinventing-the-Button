@@ -5,7 +5,7 @@ let img;
 
 
 function setup() {
-    createCanvas(windowHeight, windowWidth);
+    createCanvas(windowWidth, windowHeight);
     img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/book.jpg');
     rad=140;
 }

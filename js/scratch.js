@@ -7,7 +7,7 @@ const px = 20;
 let isScratched;
 let time;
 function setup() {
-    createCanvas(windowHeight, windowWidth);
+    createCanvas(windowWidth, windowHeight);
     img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/book.jpg');
     isScratched = new Array(int(buttonHeihgt / px)+5);
     for (let i = 0; i < int(buttonWidth / px)+5; i++)isScratched[i] = new Array(int(buttonWidth / px)+5);

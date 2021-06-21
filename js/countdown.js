@@ -6,7 +6,7 @@ let img;
 let time;
 const limitTime=5*1000;
 function setup() {
-    createCanvas(windowHeight, windowWidth);
+    createCanvas(windowWidth, windowHeight);
     img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/book.jpg');
 }
 function draw() {

@@ -6,7 +6,7 @@ const IMGX=50+354/2, IMGY=50+499/2, IMGWidth=354, IMGHeight=499;
 var imgX=IMGX, imgY=IMGY, imgWidth=IMGWidth, imgHeight=IMGHeight;
 
 function setup() {
-    createCanvas(windowHeight, windowWidth);
+    createCanvas(windowWidth, windowHeight);
     img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/book.jpg');
     imageMode(CENTER);
 }
