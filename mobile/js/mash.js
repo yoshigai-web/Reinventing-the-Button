@@ -17,7 +17,6 @@ function draw() {
     if(cnt>=MAX_cnt){
         bought=true;
         boughtTime=millis();
-        window.navigator.vibrate(200);
         cnt=0;
     }
     if (bought) {

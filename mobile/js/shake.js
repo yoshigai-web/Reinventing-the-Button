@@ -20,7 +20,6 @@ function draw() {
     background(255);
     if(cnt>=MAX_cnt+1){
         bought=true;
-        window.navigator.vibrate(200);
         cnt=0;
     }
     if (bought) {

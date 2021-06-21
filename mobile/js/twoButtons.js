@@ -39,10 +39,7 @@ function touchStarted() {
 }
 function touchEnded(){
     // if all buttons are pressed
-    if(!isPressed.includes(false) && !bought){
-        bought=true;
-        window.navigator.vibrate(200);
-    }
+    if(!isPressed.includes(false) && !bought)bought=true;
     checkButtons();
 }
 
