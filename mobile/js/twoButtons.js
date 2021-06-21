@@ -38,9 +38,9 @@ function touchStarted() {
     checkButtons();
 }
 function touchEnded(){
-    checkButtons();
     // if all buttons are pressed
     if(!isPressed.includes(false) && !bought)bought=true;
+    checkButtons();
 }
 
 function checkButtons(){
