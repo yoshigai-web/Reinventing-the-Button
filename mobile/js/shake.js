@@ -1,6 +1,7 @@
 
 let buttonX = 100, buttonY = 650, buttonWidth = 250, buttonHeihgt = 50;
-let bought = false;
+// let bought = false;
+let bought = true;
 let img;
 
 let cnt = 0;
@@ -24,9 +25,9 @@ function draw() {
     if (bought) {
         fill(0);
         textSize(30);
-        text("Thank you for shopping!", 100, 400);
+        text("Thank you for shopping!", width/2-150, 400);
         textSize(20);
-        text("Click to back.", 200, 450);
+        text("Click to back.", width/2-50, 450);
     } else {
         image(img, 50, 180, 150*2, 128*2);
         fill(0);

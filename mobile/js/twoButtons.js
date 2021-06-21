@@ -14,9 +14,9 @@ function draw() {
     if (bought) {
         fill(0);
         textSize(30);
-        text("Thank you for shopping!", 15, 100);
+        text("Thank you for shopping!", width/2-150, 400);
         textSize(20);
-        text("Click to back.", 120, 150);
+        text("Click to back.", width/2-50, 450);
     } else {
         image(img, 100, 45, 150, 128);
         fill(0);
