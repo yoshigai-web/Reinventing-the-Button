@@ -1,7 +1,6 @@
 
 let buttonX = 100, buttonY = 650, buttonWidth = 250, buttonHeihgt = 50;
-// let bought = false;
-let bought = true;
+let bought = false;
 let img;
 
 let cnt = 0;
@@ -18,7 +17,7 @@ function setup() {
 }
 function draw() {
     background(255);
-    if(cnt>=MAX_cnt){
+    if(cnt>=MAX_cnt+1){
         bought=true;
         cnt=0;
     }
