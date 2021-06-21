@@ -7,13 +7,13 @@ let cnt = 0;
 const MAX_cnt = 100;
 let time;
 function setup() {
-    createCanvas(windowWidth, windowHeight);
-    img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/airpods.jpg');
-    setShakeThreshold(50);
     btn = createButton("Motion");
 	btn.mousePressed(function(){
 		DeviceOrientationEvent.requestPermission();
 	});
+    createCanvas(windowWidth, windowHeight-100);
+    img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/airpods.jpg');
+    setShakeThreshold(50);
 }
 function draw() {
     background(255);
