@@ -19,7 +19,10 @@ function draw() {
             isCompleted[i]=false;
         }
     }
-    bought=!isCompleted.includes(false);
+    if(!isCompleted.includes(false)){
+        bought=true;
+        sliderY=[10, 10];
+    }
     if (bought) {
         fill(0);
         textSize(30);
@@ -57,7 +60,6 @@ function touchStarted() {
     checkButtons();
 }
 function touchEnded(){
-    if(bought)sliderY=[10, 10];
     checkButtons();
     for(let i=0; i<buttonNum; i++){
         if(dragID[i]==-1)sliderY[i]=10;
