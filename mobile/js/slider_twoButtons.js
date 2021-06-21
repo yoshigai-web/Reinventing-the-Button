@@ -12,7 +12,9 @@ function draw() {
     background(255);
     for(let i=0; i<touches.length; i++){
         sliderY[dragID.indexOf(i)]+=py[i]-touches[i].y;
-        if(sliderY[dragID.indexOf(i)]>buttonHeight){
+        if(sliderY[dragID.indexOf(i)]<10){
+            sliderY[dragID.indexOf(i)]=10;
+        }else if(sliderY[dragID.indexOf(i)]>buttonHeight){
             sliderY[dragID.indexOf(i)]=buttonHeight;
             isCompleted[i]=true;
         }else{
