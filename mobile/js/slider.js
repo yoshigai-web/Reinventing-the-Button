@@ -12,7 +12,7 @@ function draw() {
     background(255);
     for(let i=0; i<touches.length; i++){
         if(i==dragID){
-            sliderY+=py-touches[i].y;
+            sliderY+=(py-touches[i].y)/2;
             if(sliderY<10){
                 sliderY=10;
             }else if(sliderY>buttonHeight){
