@@ -26,13 +26,15 @@ function draw() {
     if (bought) {
         fill(0);
         textSize(30);
-        text("Thank you for shopping!", width/2-150, 400);
+        textAlign(CENTER);
+        text("Thank you for shopping!", width/2, 400);
         textSize(20);
-        text("Click to back.", width/2-50, 450);
+        text("Click to back.", width/2, 450);
     } else {
         image(img, 50, 180, 150*2, 128*2);
         fill(0);
         textSize(25);
+        textAlign(LEFT);
         text("￥29,036", 140, 600);
         // bar
         fill(50, 47, 32, 128);

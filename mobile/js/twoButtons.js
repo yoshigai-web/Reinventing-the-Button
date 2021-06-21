@@ -14,13 +14,15 @@ function draw() {
     if (bought) {
         fill(0);
         textSize(30);
-        text("Thank you for shopping!", width/2-150, 400);
+        textAlign(CENTER);
+        text("Thank you for shopping!", width/2, 400);
         textSize(20);
-        text("Click to back.", width/2-50, 450);
+        text("Click to back.", width/2, 450);
     } else {
         image(img, 100, 45, 150, 128);
         fill(0);
         textSize(30);
+        textAlign(LEFT);
         text("￥29,036", 110, 220);
         // draw button
         strokeWeight(5);
