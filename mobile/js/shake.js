@@ -9,7 +9,7 @@ let time;
 function setup() {
     createCanvas(windowWidth, windowHeight);
     img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/airpods.jpg');
-    setShakeThreshold(40);
+    setShakeThreshold(70);
 }
 function draw() {
     background(255);
