@@ -44,7 +44,7 @@ function mousePressed() {
     if (bought) bought = false;
 }
 function deviceShaken(){
-    if(millis()-time>200){
+    if(millis()-time>100){
         cnt++;
         time=millis();
     }
