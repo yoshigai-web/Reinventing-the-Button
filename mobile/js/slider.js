@@ -15,8 +15,7 @@ function draw() {
             sliderY+=py-touches[i].y;
             if(sliderY<10){
                 sliderY=10;
-            }
-            else if(sliderY>buttonHeight){
+            }else if(sliderY>buttonHeight){
                 sliderY=buttonHeight;
                 isCompleted=true;
             }else{
