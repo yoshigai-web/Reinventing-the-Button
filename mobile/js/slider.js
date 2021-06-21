@@ -1,4 +1,4 @@
-let buttonX, buttonY = 350, buttonWidth = 70, buttonHeight = 200, dragID=-1, sliderY=10, isCompleted=false;
+let buttonX, buttonY = 350, buttonWidth = 70, buttonHeight = 200, dragged=false, sliderY=10;
 let py=0;
 let bought = false;
 let img;
@@ -10,22 +10,15 @@ function setup() {
 }
 function draw() {
     background(255);
-    for(let i=0; i<touches.length; i++){
-        if(i==dragID){
-            sliderY+=(py-touches[i].y)/2;
-            if(sliderY<10){
-                sliderY=10;
-            }else if(sliderY>buttonHeight){
-                sliderY=buttonHeight;
-                isCompleted=true;
-            }else{
-                isCompleted=false;
-            }
+    if(touches.length==1){
+        sliderY+=(py-touches[0].y)/2;
+        if(sliderY<10){
+            sliderY=10;
+        }else if(sliderY>buttonHeight){
+            sliderY=buttonHeight;
+            bought=true;
+            sliderY=10;
         }
-    }
-    if(isCompleted){
-        bought=true;
-        sliderY=[10];
     }
     if (bought) {
         fill(0);
@@ -43,7 +36,7 @@ function draw() {
         text("￥29,036 ", width/2, 300);
         // draw button
         // draw  background
-        if(dragID!=-1)fill(216);
+        if(dragged)fill(216);
         else fill(255);
         rect(buttonX, buttonY, buttonWidth, buttonHeight, 5);
         // draw progress bar
@@ -55,27 +48,23 @@ function draw() {
         strokeWeight(5);
         rect(buttonX, buttonY, buttonWidth, buttonHeight, 5);
     }
-    for(let i=0; i<touches.length; i++){
-        if(i==dragID)py=touches[i].y;
-    }
+    if(touches.length==1)py=touches[0].y;
 }
 function touchStarted() {
     checkButtons();
-    for(let i=0; i<touches.length; i++){
-        if(i==dragID)py=touches[i].y;
-    }
+    if(touches.length==1)py=touches[0].y;
     if (bought)bought = false;
 }
 function touchEnded(){
     checkButtons();
-    if(dragID==-1)sliderY=10;
+    if(!dragged)sliderY=10;
 }
 
 function checkButtons(){
-    dragID=-1;
-    for(let i=0; i<touches.length; i++){
-        if (buttonX < touches[i].x && touches[i].x<buttonX + buttonWidth && buttonY < touches[i].y && touches[i].y < buttonY + buttonHeight) {
-            dragID=i;
+    dragged=false;
+    if(touches.length==1){
+        if (buttonX < touches[0].x && touches[0].x<buttonX + buttonWidth && buttonY < touches[0].y && touches[0].y < buttonY + buttonHeight) {
+            dragged=true;
         }
     }
 }
