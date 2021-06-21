@@ -48,7 +48,6 @@ function draw() {
             rect(buttonX[i], buttonY[i], buttonWidth, buttonHeihgt, 5);
         }
     }
-    text(cnt, 100, height-50);
 }
 function touchStarted() {
     if (bought)bought = false;
