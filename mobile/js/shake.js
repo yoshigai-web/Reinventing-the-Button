@@ -4,12 +4,12 @@ let bought = false;
 let img;
 
 let cnt = 0;
-const MAX_cnt = 250;
+const MAX_cnt = 150;
 let time;
 function setup() {
     createCanvas(windowWidth, windowHeight);
     img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/airpods.jpg');
-    setShakeThreshold(50);
+    setShakeThreshold(40);
 }
 function draw() {
     background(255);
