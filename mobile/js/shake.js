@@ -4,7 +4,7 @@ let bought = false;
 let img;
 
 let cnt = 0;
-const MAX_cnt = 50;
+const MAX_cnt = 30;
 let time;
 function setup() {
     btn = createButton("Motion");
@@ -14,6 +14,7 @@ function setup() {
     createCanvas(windowWidth, windowHeight-20);
     img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/airpods.jpg');
     // setShakeThreshold(50);
+    time=millis();
 }
 function draw() {
     background(255);
