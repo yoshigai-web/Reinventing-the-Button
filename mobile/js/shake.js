@@ -11,7 +11,7 @@ function setup() {
 	btn.mousePressed(function(){
 		DeviceOrientationEvent.requestPermission();
 	});
-    createCanvas(windowWidth, windowHeight-100);
+    createCanvas(windowWidth, windowHeight-20);
     img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/airpods.jpg');
     setShakeThreshold(50);
 }
