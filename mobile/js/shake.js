@@ -1,5 +1,5 @@
 
-let buttonX = 100, buttonY = 650, buttonWidth = 250, buttonHeihgt = 50;
+let buttonX = 100, buttonY = 650, buttonWidth = 250, buttonHeight = 50;
 let bought = false;
 let img;
 
