@@ -1,5 +1,5 @@
 
-let buttonX = 845, buttonY = 875, buttonWidth = 160, buttonHeihgt = 55;
+let buttonX = 845, buttonY = 715, buttonWidth = 160, buttonHeihgt = 55;
 let bought = false;
 let img;
 
@@ -31,7 +31,7 @@ function draw() {
         textSize(20);
         text("Click to back.", 200, 450);
     } else {
-        image(img, 75, 180);
+        image(img, 75, 20);
         // button
         fill(78, 212, 249, map(cnt, 0, MAX_cnt, 0, 255));
         rect(buttonX, buttonY, buttonWidth, buttonHeihgt, 5);
