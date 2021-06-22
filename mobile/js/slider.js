@@ -11,7 +11,7 @@ function setup() {
 function draw() {
     background(255);
     if (touches.length == 1) {
-        sliderY += (py - touches[0].y) / 2;
+        sliderY += (py - touches[0].y) / 3;
         if (sliderY < 10) {
             sliderY = 10;
         } else if (sliderY > buttonHeight) {
