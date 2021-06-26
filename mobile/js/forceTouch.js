@@ -8,7 +8,7 @@ function draw() {
     background(255);
     for (let i = 0; i < touches.length; i++) {
         fill(216);
-        ellipse(touches[i].x, touches[i].y, 100*force);
+        ellipse(touches[i].x, touches[i].y, 200*force);
     }
 }
 function touchStarted() {
