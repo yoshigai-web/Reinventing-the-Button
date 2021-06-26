@@ -8,7 +8,7 @@ function draw() {
     for (let i = 0; i < touches.length; i++) {
         ellipse(touches[i].x, touches[i].y, 200 * size);
     }
-    ellipse(mouseX, mouseY, 200 * size+10);
+    if(mouseIsPressed)ellipse(mouseX, mouseY, 200 * size);
 }
 Pressure.set('#myContainer', {
     start: function(event) {
