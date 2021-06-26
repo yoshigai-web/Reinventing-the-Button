@@ -1,18 +1,38 @@
 let size = 0;
 function setup() {
-    let canvas = createCanvas(windowWidth, windowHeight);
-    canvas.parent('canvasContainer');
+    let cnv=createCanvas(windowWidth, windowHeight);
+    cnv.parent('myContainer');
 }
 function draw() {
-    background(255);
+    background(0);
     for (let i = 0; i < touches.length; i++) {
-        fill(216);
         ellipse(touches[i].x, touches[i].y, 200 * size);
     }
+    ellipse(mouseX, mouseY, 200 * size+10);
 }
-Pressure.set('#canvasContainer', {
-    change: function (force, event) {
-        console.log(force);
-        size = force;
-    }
+Pressure.set('#myContainer', {
+    start: function(event) {
+        console.log('start', event);
+      },
+      change: function(force, event) {
+        size=force;
+        console.log('change', force);
+      },
+    
+      startDeepPress: function(event) {
+        console.log('start deep press', event);
+      },
+    
+      endDeepPress: function() {
+        console.log('end deep press');
+      },
+    
+      end: function() {
+        console.log('end');
+        size=0;
+      },
+    
+      unsupported: function() {
+        console.log(this);
+      }
 });
