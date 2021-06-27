@@ -5,7 +5,12 @@ function setup() {
 }
 function draw() {
     background(0);
+    fill(255);
+    text(size, 50, 50);
     
+    if(size>0.8)fill(0, 255, 0);
+    else fill(255);
+    noStroke();
     if(mouseIsPressed)ellipse(mouseX, mouseY, 200 * size);
     else{
         for (let i = 0; i < touches.length; i++) {
