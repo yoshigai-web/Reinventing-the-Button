@@ -33,13 +33,13 @@ function draw() {
     text("￥29,036", 110, 220);
     // button
     fill(78, 212, 249, map(size, 0, MAX_size, 0, 255));
-    rect(buttonX+map(size, 0, MAX_size, 0, 10), buttonY+map(size, 0, MAX_size, 0, 10), buttonWidth-+map(size, 0, MAX_size, 0, 20), buttonHeight-+map(size, 0, MAX_size, 0, 20), 5);
+    rect(buttonX + map(size, 0, MAX_size, 0, 10), buttonY + map(size, 0, MAX_size, 0, 10), buttonWidth - +map(size, 0, MAX_size, 0, 20), buttonHeight - +map(size, 0, MAX_size, 0, 20), 5);
     fill("#322F20");
     strokeWeight(5);
-    rect(buttonX+map(size, 0, MAX_size, 0, 10), buttonY -map(size, 0, MAX_size, 0, 10) + buttonHeight - 5, map(size, 0, MAX_size, 0, buttonWidth)-map(size, 0, MAX_size, 0, 20), 5, 5);
+    rect(buttonX + map(size, 0, MAX_size, 0, 10), buttonY - map(size, 0, MAX_size, 0, 10) + buttonHeight - 5, map(size, 0, MAX_size, 0, buttonWidth) - map(size, 0, MAX_size, 0, 20), 5, 5);
     fill(0);
-    textSize(60-map(size, 0, MAX_size, 0, 20));
-    text("購入", buttonX + 40+map(size, 0, MAX_size, 0, 20), buttonY + 75);
+    textSize(60 - map(size, 0, MAX_size, 0, 10));
+    text("購入", buttonX + 40 + map(size, 0, MAX_size, 0, 10), buttonY + 75 - map(size, 0, MAX_size, 0, 5));
   }
 }
 function touchStarted() {
