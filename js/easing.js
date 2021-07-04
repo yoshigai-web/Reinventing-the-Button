@@ -27,8 +27,8 @@ EasingFunctions = {
     // acceleration until halfway, then deceleration 
     easeInOutQuint: t => t < .5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t
 }
-
-let buttonY = new Array(13), cnt = new Array(13);
+const easingNum=13;
+let buttonY = new Array(easingNum), cnt = new Array(easingNum);
 let buttonX = 200, buttonWidth = 100, buttonHeihgt = 50;
 let bought = false;
 
@@ -41,7 +41,7 @@ function setup() {
         buttonY[i] = 50 + 100 * i;
         cnt[i] = 0;
     }
-    for (let i = 7; i < 13; i++) {
+    for (let i = 7; i < easingNum; i++) {
         buttonY[i] = 50 + 100 * (i - 7);
         cnt[i] = 0;
     }
@@ -60,7 +60,7 @@ function draw() {
             if (cnt[i] > 0) cnt[i]--;
         }
     }
-    for (let i = 7; i < 13; i++) {
+    for (let i = 7; i < easingNum; i++) {
         let _buttonX = buttonX + 300;
         if (_buttonX < mouseX && mouseX < _buttonX + buttonWidth && buttonY[i] < mouseY && mouseY < buttonY[i] + buttonHeihgt && mouseIsPressed) {
             cnt[i]++;
@@ -91,7 +91,7 @@ function draw() {
             fill(0);
             text(easingList[i], buttonX, buttonY[i] - 6);
         }
-        for (let i = 7; i < 13; i++) {
+        for (let i = 7; i < easingNum; i++) {
             let _buttonX = buttonX + 300;
             let eX = map(cnt[i], 0, MAX_cnt, 0, 1);
             let easingVal = EasingFunctions[easingList[i]](eX);
