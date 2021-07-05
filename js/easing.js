@@ -26,11 +26,7 @@ EasingFunctions = {
     easeOutQuint: t => 1 + (--t) * t * t * t * t,
     // acceleration until halfway, then deceleration 
     easeInOutQuint: t => t < .5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t,
-    easeOrigin: t => {
-        if (t < .2) return t * 5.0 / 3;
-        else if (t < .8) return t * 5.0 / 9 + 2 / 9;
-        else return t * 5.0 / 3 - 2 / 3;
-    }
+    easeInOutTan: t => map(1/3*tan(map(t, 0, 1, -1.3, 1.3)), 1/3*tan(-1.3), 1/3*tan(1.3), 0, 1)
 }
 const easingNum = 14;
 let buttonY = new Array(easingNum), cnt = new Array(easingNum);
@@ -38,9 +34,9 @@ let buttonX = 200, buttonWidth = 100, buttonHeight = 50;
 let bought = false;
 
 const MAX_cnt = 200;
-let easingList = ["linear", "easeInQuad", "easeOutQuad", "easeInOutQuad", "easeInCubic", "easeOutCubic", "easeInOutCubic", "easeInQuart", "easeOutQuart", "easeInOutQuart", "easeInQuint", "easeOutQuint", "easeInOutQuint", "easeOrigin"];
+let easingList = ["linear", "easeInQuad", "easeOutQuad", "easeInOutQuad", "easeInCubic", "easeOutCubic", "easeInOutCubic", "easeInQuart", "easeOutQuart", "easeInOutQuart", "easeInQuint", "easeOutQuint", "easeInOutQuint", "easeInOutTan"];
 
-let showGraph=false;
+let showGraph = false;
 
 function setup() {
     createCanvas(800, 800);
@@ -98,11 +94,11 @@ function draw() {
             rect(buttonX, buttonY[i], buttonWidth, buttonHeight);
             fill("#322F20");
             rect(buttonX, buttonY[i] + buttonHeight - 5, map(easingVal, 0, 1, 0, buttonWidth), 5);
-            if(showGraph){
-                for(let j=0; j<1; j+=0.01){
-                    point(buttonX+map(j, 0, 1, 0, buttonWidth), buttonY[i]+buttonHeight-map(EasingFunctions[easingList[i]](j), 0, 1, 0, buttonHeight));
+            if (showGraph) {
+                for (let j = 0; j < 1; j += 0.01) {
+                    point(buttonX + map(j, 0, 1, 0, buttonWidth), buttonY[i] + buttonHeight - map(EasingFunctions[easingList[i]](j), 0, 1, 0, buttonHeight));
                 }
-                line(buttonX+map(cnt[i], 0, MAX_cnt, 0, buttonWidth), buttonY[i], buttonX+map(cnt[i], 0, MAX_cnt, 0, buttonWidth), buttonY[i]+buttonHeight);
+                line(buttonX + map(cnt[i], 0, MAX_cnt, 0, buttonWidth), buttonY[i], buttonX + map(cnt[i], 0, MAX_cnt, 0, buttonWidth), buttonY[i] + buttonHeight);
             }
             fill(0);
             text(easingList[i], buttonX, buttonY[i] - 6);
@@ -115,11 +111,11 @@ function draw() {
             rect(_buttonX, buttonY[i], buttonWidth, buttonHeight);
             fill("#322F20");
             rect(_buttonX, buttonY[i] + buttonHeight - 5, map(easingVal, 0, 1, 0, buttonWidth), 5);
-            if(showGraph){
-                for(let j=0; j<1; j+=0.01){
-                    point(_buttonX+map(j, 0, 1, 0, buttonWidth), buttonY[i]+buttonHeight-map(EasingFunctions[easingList[i]](j), 0, 1, 0, buttonHeight));
+            if (showGraph) {
+                for (let j = 0; j < 1; j += 0.01) {
+                    point(_buttonX + map(j, 0, 1, 0, buttonWidth), buttonY[i] + buttonHeight - map(EasingFunctions[easingList[i]](j), 0, 1, 0, buttonHeight));
                 }
-                line(_buttonX+map(cnt[i], 0, MAX_cnt, 0, buttonWidth), buttonY[i], _buttonX+map(cnt[i], 0, MAX_cnt, 0, buttonWidth), buttonY[i]+buttonHeight);
+                line(_buttonX + map(cnt[i], 0, MAX_cnt, 0, buttonWidth), buttonY[i], _buttonX + map(cnt[i], 0, MAX_cnt, 0, buttonWidth), buttonY[i] + buttonHeight);
             }
             fill(0);
             text(easingList[i], _buttonX, buttonY[i] - 6);
@@ -132,5 +128,5 @@ function mousePressed() {
 }
 
 function changeGraphview() {
-    showGraph=!showGraph;
+    showGraph = !showGraph;
 }
