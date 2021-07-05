@@ -41,7 +41,7 @@ let showGraph = false;
 function setup() {
     createCanvas(800, 800);
     button = createButton('show graph');
-    button.position(370, 750);
+    button.position(360, 75);
     button.mousePressed(changeGraphview);
     for (let i = 0; i < 7; i++) {
         buttonY[i] = 100 + 100 * i;
