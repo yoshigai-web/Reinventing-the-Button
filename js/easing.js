@@ -44,11 +44,11 @@ function setup() {
     button.position(370, 750);
     button.mousePressed(changeGraphview);
     for (let i = 0; i < 7; i++) {
-        buttonY[i] = 50 + 100 * i;
+        buttonY[i] = 100 + 100 * i;
         cnt[i] = 0;
     }
     for (let i = 7; i < easingNum; i++) {
-        buttonY[i] = 50 + 100 * (i - 7);
+        buttonY[i] = 100 + 100 * (i - 7);
         cnt[i] = 0;
     }
 }
@@ -85,6 +85,8 @@ function draw() {
         textSize(20);
         text("Click to back.", 200, 450);
     } else {
+        textSize(30);
+        text("長押し", buttonX+150, 50);
         // button
         textSize(14);
         for (let i = 0; i < 7; i++) {
