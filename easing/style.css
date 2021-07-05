@@ -1,0 +1,11 @@
+*{
+    -webkit-user-select: none;
+            user-select: none;
+    touch-action: none;
+    margin: 0;
+    padding: 0;
+}
+p{
+  margin: 20px;  
+  font-size: 25px;
+}
