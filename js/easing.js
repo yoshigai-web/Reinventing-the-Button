@@ -25,17 +25,22 @@ EasingFunctions = {
     // decelerating to zero velocity
     easeOutQuint: t => 1 + (--t) * t * t * t * t,
     // acceleration until halfway, then deceleration 
-    easeInOutQuint: t => t < .5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t
+    easeInOutQuint: t => t < .5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t,
+    easeOrigin: t => {
+        if (t < .2) return t * 5.0 / 3;
+        else if (t < .8) return t * 5.0 / 9 + 2 / 9;
+        else return t * 5.0 / 3 - 2 / 3;
+    }
 }
-const easingNum=13;
+const easingNum=14;
 let buttonY = new Array(easingNum), cnt = new Array(easingNum);
 let buttonX = 200, buttonWidth = 100, buttonHeihgt = 50;
 let bought = false;
 
 const MAX_cnt = 200;
-let easingList = ["linear", "easeInQuad", "easeOutQuad", "easeInOutQuad", "easeInCubic", "easeOutCubic", "easeInOutCubic", "easeInQuart", "easeOutQuart", "easeInOutQuart", "easeInQuint", "easeOutQuint", "easeInOutQuint"];
+let easingList = ["linear", "easeInQuad", "easeOutQuad", "easeInOutQuad", "easeInCubic", "easeOutCubic", "easeInOutCubic", "easeInQuart", "easeOutQuart", "easeInOutQuart", "easeInQuint", "easeOutQuint", "easeInOutQuint", "easeOrigin"];
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(800, 800);
 
     for (let i = 0; i < 7; i++) {
         buttonY[i] = 50 + 100 * i;
