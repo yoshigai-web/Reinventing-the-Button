@@ -32,16 +32,21 @@ EasingFunctions = {
         else return t * 5.0 / 3 - 2 / 3;
     }
 }
-const easingNum=14;
+const easingNum = 14;
 let buttonY = new Array(easingNum), cnt = new Array(easingNum);
-let buttonX = 200, buttonWidth = 100, buttonHeihgt = 50;
+let buttonX = 200, buttonWidth = 100, buttonHeight = 50;
 let bought = false;
 
 const MAX_cnt = 200;
 let easingList = ["linear", "easeInQuad", "easeOutQuad", "easeInOutQuad", "easeInCubic", "easeOutCubic", "easeInOutCubic", "easeInQuart", "easeOutQuart", "easeInOutQuart", "easeInQuint", "easeOutQuint", "easeInOutQuint", "easeOrigin"];
+
+let showGraph=false;
+
 function setup() {
     createCanvas(800, 800);
-
+    button = createButton('show graph');
+    button.position(370, 750);
+    button.mousePressed(changeGraphview);
     for (let i = 0; i < 7; i++) {
         buttonY[i] = 50 + 100 * i;
         cnt[i] = 0;
@@ -55,7 +60,7 @@ function draw() {
     background(255);
 
     for (let i = 0; i < 7; i++) {
-        if (buttonX < mouseX && mouseX < buttonX + buttonWidth && buttonY[i] < mouseY && mouseY < buttonY[i] + buttonHeihgt && mouseIsPressed) {
+        if (buttonX < mouseX && mouseX < buttonX + buttonWidth && buttonY[i] < mouseY && mouseY < buttonY[i] + buttonHeight && mouseIsPressed) {
             cnt[i]++;
             if (cnt[i] > MAX_cnt) {
                 bought = true;
@@ -67,7 +72,7 @@ function draw() {
     }
     for (let i = 7; i < easingNum; i++) {
         let _buttonX = buttonX + 300;
-        if (_buttonX < mouseX && mouseX < _buttonX + buttonWidth && buttonY[i] < mouseY && mouseY < buttonY[i] + buttonHeihgt && mouseIsPressed) {
+        if (_buttonX < mouseX && mouseX < _buttonX + buttonWidth && buttonY[i] < mouseY && mouseY < buttonY[i] + buttonHeight && mouseIsPressed) {
             cnt[i]++;
             if (cnt[i] > MAX_cnt) {
                 bought = true;
@@ -90,9 +95,15 @@ function draw() {
             let eX = map(cnt[i], 0, MAX_cnt, 0, 1);
             let easingVal = EasingFunctions[easingList[i]](eX);
             fill(78, 212, 249, map(easingVal, 0, 1, 0, 255));
-            rect(buttonX, buttonY[i], buttonWidth, buttonHeihgt, 5);
+            rect(buttonX, buttonY[i], buttonWidth, buttonHeight);
             fill("#322F20");
-            rect(buttonX, buttonY[i] + buttonHeihgt - 5, map(easingVal, 0, 1, 0, buttonWidth), 5, 5);
+            rect(buttonX, buttonY[i] + buttonHeight - 5, map(easingVal, 0, 1, 0, buttonWidth), 5);
+            if(showGraph){
+                for(let j=0; j<1; j+=0.01){
+                    point(buttonX+map(j, 0, 1, 0, buttonWidth), buttonY[i]+buttonHeight-map(EasingFunctions[easingList[i]](j), 0, 1, 0, buttonHeight));
+                }
+                line(buttonX+map(cnt[i], 0, MAX_cnt, 0, buttonWidth), buttonY[i], buttonX+map(cnt[i], 0, MAX_cnt, 0, buttonWidth), buttonY[i]+buttonHeight);
+            }
             fill(0);
             text(easingList[i], buttonX, buttonY[i] - 6);
         }
@@ -101,9 +112,15 @@ function draw() {
             let eX = map(cnt[i], 0, MAX_cnt, 0, 1);
             let easingVal = EasingFunctions[easingList[i]](eX);
             fill(78, 212, 249, map(easingVal, 0, 1, 0, 255));
-            rect(_buttonX, buttonY[i], buttonWidth, buttonHeihgt, 5);
+            rect(_buttonX, buttonY[i], buttonWidth, buttonHeight);
             fill("#322F20");
-            rect(_buttonX, buttonY[i] + buttonHeihgt - 5, map(easingVal, 0, 1, 0, buttonWidth), 5, 5);
+            rect(_buttonX, buttonY[i] + buttonHeight - 5, map(easingVal, 0, 1, 0, buttonWidth), 5);
+            if(showGraph){
+                for(let j=0; j<1; j+=0.01){
+                    point(_buttonX+map(j, 0, 1, 0, buttonWidth), buttonY[i]+buttonHeight-map(EasingFunctions[easingList[i]](j), 0, 1, 0, buttonHeight));
+                }
+                line(_buttonX+map(cnt[i], 0, MAX_cnt, 0, buttonWidth), buttonY[i], _buttonX+map(cnt[i], 0, MAX_cnt, 0, buttonWidth), buttonY[i]+buttonHeight);
+            }
             fill(0);
             text(easingList[i], _buttonX, buttonY[i] - 6);
         }
@@ -114,3 +131,6 @@ function mousePressed() {
     if (bought) bought = false;
 }
 
+function changeGraphview() {
+    showGraph=!showGraph;
+}
