@@ -29,12 +29,12 @@ function draw() {
         textSize(50);
         fill(0);
         text("合意", windowWidth / 2, windowHeight / 2);
-        cnt = MAX_cnt;
     } else {
         // progress bar
         fill(0);
         rect(0, displayHeight / 2, map(cnt, 0, MAX_cnt, 0, displayWidth), 50);
     }
+    textSize(12);
     text(cnt, 100, 100);
 }
 function touchStarted() {
