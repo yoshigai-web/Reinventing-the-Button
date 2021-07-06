@@ -3,7 +3,7 @@ let buttonX = new Array(peopleNum), buttonY;
 let buttonWidth, buttonHeight;
 let isPressed = new Array(peopleNum);
 let cnt = 0;
-const MAX_cnt = 2000;
+const MAX_cnt = 800;
 let recentTime;
 function setup() {
     createCanvas(windowWidth, windowHeight);
