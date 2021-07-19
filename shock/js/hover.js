@@ -4,7 +4,7 @@ let isPressed = false;
 let hoverig = false;
 let time;
 function setup() {
-    sound = loadSound('assets/ガラスが割れる.mp3');
+    sound = loadSound('assets/electric voice.mp3');
     createCanvas(720, 720);
     textAlign(CENTER);
 }

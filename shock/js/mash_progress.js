@@ -4,7 +4,7 @@ let isPressed = false;
 let cnt = 0, MAX_cnt = Math.floor(Math.random() * 25 - 3) + 3;
 let time;
 function setup() {
-    sound = loadSound('assets/ガラスが割れる.mp3');
+    sound = loadSound('assets/electric voice.mp3');
     createCanvas(720, 720);
     textAlign(CENTER);
 }

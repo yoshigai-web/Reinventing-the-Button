@@ -4,7 +4,7 @@ let isPressed = false;
 let isWating = false;
 let time, latency = Math.random() * (5 - 0.2) + 0.2;
 function setup() {
-    sound = loadSound('assets/ガラスが割れる.mp3');
+    sound = loadSound('assets/electric voice.mp3');
     createCanvas(720, 720);
 }
 function draw() {

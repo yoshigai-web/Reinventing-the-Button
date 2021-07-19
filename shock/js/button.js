@@ -2,7 +2,7 @@ let sound;
 let buttonX = 200, buttonY = 350, buttonWidth = 200, buttonHeihgt = 100;
 let isPressed = false;
 function setup() {
-    sound = loadSound('assets/ガラスが割れる.mp3');
+    sound = loadSound('assets/electric voice.mp3');
     createCanvas(720, 720);
     textAlign(CENTER);
 }
