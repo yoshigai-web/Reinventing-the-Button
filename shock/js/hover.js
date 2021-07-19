@@ -10,12 +10,10 @@ function setup() {
 }
 function draw() {
     background(255);
-    if (isPressed) {
-        fill(127, 201, 221);
-    } else if (sound.isPlaying()) {
-        fill(255);
+    if (isPressed || sound.isPlaying()) {
+        fill(255, 0, 0);
     } else if (buttonX < mouseX && mouseX < buttonX + buttonWidth && buttonY < mouseY && mouseY < buttonY + buttonHeihgt) {
-        fill(157, 231, 251);
+        fill(255, 130, 130);
 
     } else {
         fill(255);
@@ -28,7 +26,7 @@ function draw() {
     } else {
         hoverig = false;
     }
-    console.log(hoverig);
+    // console.log(hoverig);
     if (500 < millis() - time && millis() - time < 600 && hoverig) {
         if (!sound.isPlaying()) sound.play();
     }

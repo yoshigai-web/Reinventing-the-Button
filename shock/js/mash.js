@@ -6,6 +6,7 @@ function setup() {
     sound = loadSound('assets/electric voice.mp3');
     createCanvas(720, 720);
     textAlign(CENTER);
+    console.log(MAX_cnt);
 }
 function draw() {
     background(255);
@@ -14,11 +15,12 @@ function draw() {
         if (!sound.isPlaying()) sound.play();
         cnt = 0;
         MAX_cnt = Math.floor(Math.random() * 25 - 3) + 3;
+        console.log(MAX_cnt)+1;
     }
 
-    if (isPressed) fill(127, 201, 221);
+    if (isPressed) fill(255, 0, 0);
     else if (sound.isPlaying()) fill(255);
-    else if (buttonX < mouseX && mouseX < buttonX + buttonWidth && buttonY < mouseY && mouseY < buttonY + buttonHeihgt) fill(157, 231, 251);
+    else if (buttonX < mouseX && mouseX < buttonX + buttonWidth && buttonY < mouseY && mouseY < buttonY + buttonHeihgt) fill(255, 130, 130);
     else fill(255);
     strokeWeight(3);
     rect(buttonX, buttonY, buttonWidth, buttonHeihgt, 5);

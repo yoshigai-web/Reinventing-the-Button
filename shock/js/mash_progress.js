@@ -19,9 +19,9 @@ function draw() {
 
     if(millis()-time>500 && cnt>0 && frameCount%50==0)cnt--;
 
-    if (isPressed) fill(127, 201, 221);
+    if (isPressed) fill(255, 0, 0);
     else if (sound.isPlaying()) fill(255);
-    else if (buttonX < mouseX && mouseX < buttonX + buttonWidth && buttonY < mouseY && mouseY < buttonY + buttonHeihgt) fill(157, 231, 251);
+    else if (buttonX < mouseX && mouseX < buttonX + buttonWidth && buttonY < mouseY && mouseY < buttonY + buttonHeihgt) fill(255, 130, 130);
     else fill(255);
     strokeWeight(3);
     stroke(0);
