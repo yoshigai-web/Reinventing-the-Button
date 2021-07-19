@@ -12,7 +12,7 @@ function draw() {
     else if (sound.isPlaying()) fill(255);
     else if (buttonX < mouseX && mouseX < buttonX + buttonWidth && buttonY < mouseY && mouseY < buttonY + buttonHeihgt) fill(157, 231, 251);
     else fill(255);
-    
+    strokeWeight(3);
     rect(buttonX, buttonY, buttonWidth, buttonHeihgt, 5);
     fill(0);
     textSize(20);
