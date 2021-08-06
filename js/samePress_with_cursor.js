@@ -22,8 +22,9 @@ function draw() {
                 pressed = true;
                 time = millis();
             }
-        } else fill(255);
-        rect(btnX + i * 200, btnY, btnW, btnH);
+        } else if (btnX + i * 200 < mouseX && mouseX < btnX + i * 200 + btnW && btnY < mouseY && mouseY < btnY + btnH) fill(255, 0, 0, 100);
+        else fill(255);
+        rect(btnX + i * 200, btnY, btnW, btnH, 10);
         if (!btn[i] && pressed) image(img, btnX + i * 200 + noise(i) * btnW, btnY + noise(i) * btnH + waitTime[i] - (millis() - time), 286 * 0.08, 429 * 0.08);
         if (btn[i] && first != i) image(img, btnX + i * 200 + noise(i) * btnW, btnY + noise(i) * btnH, 286 * 0.08, 429 * 0.08);
     }
