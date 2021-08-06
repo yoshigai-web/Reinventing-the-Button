@@ -9,7 +9,7 @@ let img = new Array(btnNum - 1);
 
 function setup() {
     createCanvas(1200, 800);
-    for (let i = 0; i < btnNum - 1; i++)img[i] = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/face' + i + '.jepg');
+    for (let i = 0; i < btnNum - 1; i++)img[i] = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/face' + i + '.jpeg');
     for (let i = 0; i < btnNum; i++)waitTime[i] = Math.floor(Math.random() * maxTime);
 }
 function draw() {
