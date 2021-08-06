@@ -3,7 +3,7 @@ let btnNum = 5;
 let btn = new Array(btnNum);
 let time;
 let waitTime = new Array(btnNum);
-let maxTime = 2000;
+let maxTime = 1500;
 let pressed = false;
 let first;
 let img;
@@ -31,6 +31,11 @@ function draw() {
     if (pressed) {
         let t = millis();
         for (let i = 0; i < btnNum; i++) if (t - time > waitTime[i]) btn[i] = true;
+    }
+    if(!btn.includes(false)){
+        fill(0);
+        textSize(50);
+        text("Done", 480, height / 2);
     }
     image(img, mouseX, mouseY, 286 * 0.08, 429 * 0.08);
 }
