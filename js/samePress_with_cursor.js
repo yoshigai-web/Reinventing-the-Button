@@ -10,8 +10,8 @@ let img;
 function setup() {
     createCanvas(1200, 800);
     init();
-    img = loadImage("cursor.png");
     img = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/cursor.png');
+    noCursor();
 }
 function draw() {
     background(255);
@@ -31,6 +31,7 @@ function draw() {
         let t = millis();
         for (let i = 0; i < btnNum; i++) if (t - time > waitTime[i]) btn[i] = true;
     }
+    image(img, mouseX, mouseY, 286 * 0.08, 429 * 0.08);
 }
 function mousePressed() {
     if (!btn.includes(false)) {
