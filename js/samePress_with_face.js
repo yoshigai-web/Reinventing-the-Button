@@ -5,7 +5,7 @@ let judge = new Array(judgeNum);
 let btn = false;
 let time;
 let waitTime = new Array(judgeNum);
-let maxTime = 2000;
+let maxTime = 3000;
 let pressed = false;
 let img = new Array(judgeNum - 1);
 
