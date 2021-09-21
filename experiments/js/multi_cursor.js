@@ -1,10 +1,12 @@
 let btnX = 200, btnY = 400, btnW = 100, btnH = 100;
 let btnNum = 5;
-let btnInterval = 170;
+let btnInterval = 150;
 let btnPressed;
+let cursorImg;
 function setup() {
     createCanvas(1200, 800);
     noCursor();
+    cursorImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/cursor.png');
 }
 function draw() {
     background(255);
@@ -20,16 +22,15 @@ function mousePressed() {
 }
 function drawButton() {
     if (btnPressed) fill(255, 0, 0);
+    else if((mouseX - btnX) % btnInterval < btnW && btnY < mouseY && mouseY < btnY + btnH)fill(255, 100, 100, 100);
     else fill(255);
     for (let i = 0; i < btnNum; i++)rect(btnX + i * btnInterval, btnY, btnW, btnH);
 }
 function drawCursor() {
-    fill(255);
-    ellipse(mouseX, mouseY, 10, 10);
     if (btnY - 100 < mouseY && mouseY < btnY + btnH + 100) {
         let x = (mouseX - btnX) % btnInterval;
         for (let i = -1; i <= btnNum; i++) {
-            ellipse(btnX + i * btnInterval + x, mouseY, 10, 10);
+            image(cursorImg, btnX + i * btnInterval + x, mouseY, 286 * 0.08, 429 * 0.08);
         }
     }
 }
