@@ -15,10 +15,8 @@ function draw() {
     drawButton();
     drawCursor();
     if (btnPressed) {
-        if (!sound.isPlaying()) {
-            sound.play();
-            btnPressed = false;
-        }
+        if(int(random(10))==0)sound.play();
+        btnPressed = false;
     }
 }
 function mousePressed() {
@@ -35,6 +33,7 @@ function drawButton() {
     for (let i = 0; i < btnNum; i++)rect(btnX + i * btnInterval, btnY, btnW, btnH);
 }
 function drawCursor() {
+    image(cursorImg, mouseX, mouseY, 286 * 0.08, 429 * 0.08);
     if (btnY - 100 < mouseY && mouseY < btnY + btnH + 100) {
         let x = (mouseX - btnX) % btnInterval;
         for (let i = -1; i <= btnNum; i++) {
