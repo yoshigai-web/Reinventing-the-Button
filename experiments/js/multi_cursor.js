@@ -3,15 +3,23 @@ let btnNum = 5;
 let btnInterval = 150;
 let btnPressed;
 let cursorImg;
+let sound;
 function setup() {
     createCanvas(1200, 800);
     noCursor();
     cursorImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/cursor.png');
+    sound = loadSound('assets/electric voice.mp3');
 }
 function draw() {
     background(255);
     drawButton();
     drawCursor();
+    if (btnPressed) {
+        if (!sound.isPlaying()) {
+            sound.play();
+            btnPressed = false;
+        }
+    }
 }
 function mousePressed() {
     // ボタンの上下100ptからカーソルを複数表示する
@@ -22,7 +30,7 @@ function mousePressed() {
 }
 function drawButton() {
     if (btnPressed) fill(255, 0, 0);
-    else if((mouseX - btnX) % btnInterval < btnW && btnY < mouseY && mouseY < btnY + btnH)fill(255, 100, 100, 100);
+    else if ((mouseX - btnX) % btnInterval < btnW && btnY < mouseY && mouseY < btnY + btnH) fill(255, 100, 100, 100);
     else fill(255);
     for (let i = 0; i < btnNum; i++)rect(btnX + i * btnInterval, btnY, btnW, btnH);
 }
