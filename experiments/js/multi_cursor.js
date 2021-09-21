@@ -5,15 +5,12 @@ let btnPressed;
 let cursorImg;
 let cursorErrorX = [], cursorErrorY = [];
 let sound;
+let noiseSeed=0.0;
 function setup() {
     createCanvas(1200, 800);
     noCursor();
     cursorImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/cursor.png');
     sound = loadSound('assets/electric voice.mp3');
-    for (let i = 0; i < btnNum; i++) {
-        cursorErrorX[i] = int(random(30)) - 15;
-        cursorErrorY[i] = int(random(30)) - 15;
-    }
 }
 function draw() {
     background(255);
@@ -48,5 +45,12 @@ function drawCursor() {
                 image(cursorImg, cursorX, cursorY, 286 * 0.08, 429 * 0.08);
             }
         }
+    }
+}
+function mouseMoved(){
+    noiseSeed+=0.01;
+    for (let i = -1; i <= btnNum; i++) {
+        cursorErrorX[i] = noise((noiseSeed+i*3))*80 - 40;
+        cursorErrorY[i] = noise((noiseSeed+i*3+1))*80 - 40;
     }
 }
