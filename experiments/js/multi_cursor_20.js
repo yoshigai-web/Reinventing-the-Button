@@ -38,7 +38,7 @@ function drawCursor() {
     image(cursorImg, mouseX, mouseY, 286 * 0.08, 429 * 0.08);
     if (btnY - 100 < mouseY && mouseY < btnY + btnH + 100) {
         let relativeMouseX = (mouseX - btnX) % btnInterval;
-        for (let i = -1; i <= btnNum; i++) {
+        for (let i = 0; i < btnNum; i++) {
             if (btnX + i * btnInterval + relativeMouseX != mouseX) {
                 let cursorX = btnX + i * btnInterval + relativeMouseX + cursorErrorX[i];
                 let cursorY = mouseY + cursorErrorY[i];
@@ -49,7 +49,7 @@ function drawCursor() {
 }
 function mouseMoved(){
     noiseSeed+=0.01;
-    for (let i = -1; i <= btnNum; i++) {
+    for (let i = 0; i < btnNum; i++) {
         cursorErrorX[i] = noise((noiseSeed+i*3))*btnW - btnW/2;
         cursorErrorY[i] = noise((noiseSeed+i*3+1))*btnH - btnH/2;
     }
