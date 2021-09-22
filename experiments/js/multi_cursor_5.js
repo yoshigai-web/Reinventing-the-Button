@@ -1,6 +1,6 @@
-let btnX = 10, btnY = 400, btnW = 40, btnH = 40;
-let btnNum = 20;
-let btnInterval = 50;
+let btnX = 200, btnY = 400, btnW = 100, btnH = 100;
+let btnNum = 5;
+let btnInterval = 150;
 let btnPressed;
 let cursorImg;
 let cursorErrorX = [], cursorErrorY = [];

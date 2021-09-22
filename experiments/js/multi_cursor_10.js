@@ -50,7 +50,7 @@ function drawCursor() {
 function mouseMoved(){
     noiseSeed+=0.01;
     for (let i = -1; i <= btnNum; i++) {
-        cursorErrorX[i] = noise((noiseSeed+i*3))*80 - 40;
-        cursorErrorY[i] = noise((noiseSeed+i*3+1))*80 - 40;
+        cursorErrorX[i] = noise((noiseSeed+i*3))*btnW - btnW/2;
+        cursorErrorY[i] = noise((noiseSeed+i*3+1))*btnH - btnH/2;
     }
 }
