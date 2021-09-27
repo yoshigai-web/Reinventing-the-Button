@@ -3,6 +3,7 @@ let btnNum = 1;
 let btnInterval = 100;
 let btnPressed;
 let cursorImg;
+let cursorNum = 20;
 let cursorErrorX = [], cursorErrorY = [];
 let sound;
 let noiseSeed = 0.0;
@@ -38,17 +39,16 @@ function drawButton() {
 function drawCursor() {
     image(cursorImg, mouseX, mouseY, 286 * 0.08, 429 * 0.08);
     if (btnX - 100 < mouseX && mouseX < btnX + btnW + 100 && btnY - 100 < mouseY && mouseY < btnY + btnH + 100) {
-        for (let x = -100; x < 100; x += 20) {
-            for (let y = -100; y < 100; y += 20) {
-                image(cursorImg, mouseX + x, mouseY + y, 286 * 0.08, 429 * 0.08);
-            }
+        for (let i = 0; i < cursorNum; i++) {
+            image(cursorImg, mouseX + cursorErrorX[i], mouseY + cursorErrorY[i], 286 * 0.08, 429 * 0.08);
         }
     }
 }
 function mouseMoved() {
     noiseSeed += 0.01;
-    for (let i = 0; i < btnNum; i++) {
-        cursorErrorX[i] = noise((noiseSeed + i * 3)) * btnW - btnW / 2;
-        cursorErrorY[i] = noise((noiseSeed + i * 3 + 1)) * btnH - btnH / 2;
+    let range = 150;
+    for (let i = 0; i < cursorNum; i++) {
+        cursorErrorX[i] = noise((noiseSeed + i * 3)) * range - range / 2;
+        cursorErrorY[i] = noise((noiseSeed + i * 3 + 1)) * range - range / 2;
     }
 }
