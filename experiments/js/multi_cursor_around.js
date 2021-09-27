@@ -24,10 +24,8 @@ function draw() {
     }
 }
 function mousePressed() {
-    // ボタンの上下100ptからカーソルを複数表示する
     if (btnY - 100 < mouseY && mouseY < btnY + btnH + 100) {
-        let relativeMouseX = (mouseX - btnX) % btnInterval;
-        if (relativeMouseX < btnW && btnY < mouseY && mouseY < btnY + btnH) btnPressed = !btnPressed;
+        btnPressed = !btnPressed;
     }
 }
 function drawButton() {
