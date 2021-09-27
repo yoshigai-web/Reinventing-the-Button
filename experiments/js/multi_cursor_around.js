@@ -37,11 +37,13 @@ function drawButton() {
     for (let i = 0; i < btnNum; i++)rect(btnX + i * btnInterval, btnY, btnW, btnH);
 }
 function drawCursor() {
-    image(cursorImg, mouseX, mouseY, 286 * 0.08, 429 * 0.08);
     if (btnX - 100 < mouseX && mouseX < btnX + btnW + 100 && btnY - 100 < mouseY && mouseY < btnY + btnH + 100) {
         for (let i = 0; i < cursorNum; i++) {
             image(cursorImg, mouseX + cursorErrorX[i], mouseY + cursorErrorY[i], 286 * 0.08, 429 * 0.08);
         }
+    }else{
+        // draw my cursor
+        image(cursorImg, mouseX, mouseY, 286 * 0.08, 429 * 0.08);
     }
 }
 function mouseMoved() {
