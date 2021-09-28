@@ -2,7 +2,7 @@ let btnX = 100, btnY = 200, btnW = 100, btnH = 100, btnInterval = 200;
 let btnNum = 5;
 let btnPressed = [];
 let myBtn;
-let pressedTime;
+let startTime;
 let waitTime = [];
 let delayTime = 1000;;
 let maxTime = 1500;
@@ -39,7 +39,7 @@ function keyPressed() {
 function init() {
     for (let i = 0; i < btnNum; i++) btnPressed[i] = false;
     for (let i = 0; i < btnNum; i++) waitTime[i] = Math.floor(Math.random() * maxTime) + delayTime;
-    pressedTime = millis();
+    startTime = millis();
     myBtn = int(random(btnNum));
     // btnPressed[myBtn] = !btnPressed[myBtn];
 }
@@ -56,7 +56,7 @@ function drawButton() {
     }
 }
 function drawCursor() {
-    let passedTime = millis() - pressedTime;
+    let passedTime = millis() - startTime;
     for (let i = 0; i < btnNum; i++) {
         // moving
         if (!btnPressed[i] && myBtn != i) {
@@ -71,7 +71,7 @@ function drawCursor() {
     }
 }
 function makeBtnPressed() {
-    let passedTime = millis() - pressedTime;
+    let passedTime = millis() - startTime;
     for (let i = 0; i < btnNum; i++) {
         if (passedTime > waitTime[i] && myBtn != i) {
             btnPressed[i] = true;
