@@ -27,7 +27,7 @@ function mousePressed() {
     }
     // check button pressed
     for (let i = 0; i < btnNum; i++) {
-        if (btnX + i * btnInterval < mouseX && mouseX < btnX + i * btnInterval + btnW && btnY < mouseY && mouseY < btnY + btnH) {
+        if (btnX + i * btnInterval < mouseX && mouseX < btnX + i * btnInterval + btnW && btnY < mouseY && mouseY < btnY + btnH && !btnPressed.includes(true)) {
             btnPressed[i] = !btnPressed[i];
             myBtn = i;
             pressedTime = millis();
@@ -54,10 +54,13 @@ function drawButton() {
     }
 }
 function drawCursor() {
+    let passedTime = millis()-pressedTime;
     for (let i = 0; i < btnNum; i++) {
         // moving
-        if (!btnPressed[i] && btnPressed.includes(true)) {
-            image(img, btnX + i * btnInterval + noise(i) * btnW, btnY + noise(i) * btnH + waitTime[i] - (millis() - pressedTime), 286 * 0.08, 429 * 0.08);
+        if (!btnPressed[i]) {
+            let cursorX = btnX + i * btnInterval + noise(i) * btnW;
+            let cursorY = btnY + noise(i) * btnH + waitTime[i] - passedTime;
+            image(img, cursorX, cursorY, 286 * 0.08, 429 * 0.08);
         }
         // last position
         if (btnPressed[i] && myBtn != i) {
@@ -67,9 +70,9 @@ function drawCursor() {
 }
 function makeBtnPressed() {
     if (btnPressed.includes(true)) {
-        let t = millis();
+        let passedTime = millis() - pressedTime;
         for (let i = 0; i < btnNum; i++) {
-            if (t - pressedTime > waitTime[i]) {
+            if (passedTime > waitTime[i]) {
                 btnPressed[i] = true;
             }
         }
