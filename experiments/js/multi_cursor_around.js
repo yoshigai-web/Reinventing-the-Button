@@ -6,7 +6,7 @@ let cursorImg;
 let cursorNum = 15;
 let cursorErrorX = [], cursorErrorY = [];
 let sound;
-
+let pressedTime;
 function setup() {
     createCanvas(1200, 800);
     noCursor();
@@ -19,7 +19,9 @@ function draw() {
     drawButton();
     drawCursor();
     if (btnPressed) {
-        if (int(random(10)) == 0) sound.play();
+        if (int(random(10*30)) == 0) sound.play();
+    }
+    if(btnPressed && millis() - pressedTime > 500){
         btnPressed = false;
     }
 }
@@ -27,6 +29,7 @@ function mousePressed() {
     // ボタンの上下100ptからカーソルを複数表示する
     if (btnY - 100 < mouseY && mouseY < btnY + btnH + 100) {
         btnPressed = !btnPressed;
+        pressedTime = millis();
     }
 }
 function init() {
@@ -45,10 +48,10 @@ function drawButton() {
 function drawCursor() {
     image(cursorImg, mouseX, mouseY, 286 * 0.08, 429 * 0.08);
     if (btnX - 100 < mouseX && mouseX < btnX + btnW + 100 && btnY - 100 < mouseY && mouseY < btnY + btnH + 100) {
-        for(let i=0; i<cursorNum; i++){
+        for (let i = 0; i < cursorNum; i++) {
             image(cursorImg, mouseX + cursorErrorX[i], mouseY + cursorErrorY[i], 286 * 0.08, 429 * 0.08);
         }
-    }else{
+    } else {
         init();
     }
 }

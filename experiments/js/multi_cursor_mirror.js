@@ -2,6 +2,7 @@ let btnX, btnY, btnW = 70, btnH = 70;
 let btnPressed = false;
 let cursorImg;
 let sound;
+let pressedTime;
 function setup() {
     createCanvas(1200, 800);
     noCursor();
@@ -15,7 +16,9 @@ function draw() {
     drawButton();
     drawCursor();
     if (btnPressed) {
-        if (int(random(10)) == 0) sound.play();
+        if (int(random(10 * 30)) == 0) sound.play();
+    }
+    if (btnPressed && millis() - pressedTime > 500) {
         btnPressed = false;
     }
 }
@@ -34,5 +37,6 @@ function drawCursor() {
 function mousePressed() {
     if (btnX - btnW / 2 < mouseX && mouseX < btnX + btnW / 2 && btnY - btnH / 2 < mouseY && mouseY < btnY + btnH) {
         btnPressed = !btnPressed;
+        pressedTime = millis();
     }
 }

@@ -4,10 +4,11 @@ let btnInterval = 100;
 let btnPressed;
 let cursorImg;
 let cursorErrorX = [], cursorErrorY = [];
-let errorRange=50;
+let errorRange = 50;
 let sound;
 let noiseSeed = 0.0;
 let atari;
+let pressedTime;
 function setup() {
     createCanvas(1200, 800);
     noCursor();
@@ -20,7 +21,9 @@ function draw() {
     drawButton();
     drawCursor();
     if (btnPressed) {
-        if (int(random(10)) == 0) sound.play();
+        if (int(random(10 * 30)) == 0) sound.play();
+    }
+    if (btnPressed && millis() - pressedTime > 500) {
         btnPressed = false;
         atari = int(random(btnNum));
     }
@@ -29,7 +32,10 @@ function mousePressed() {
     // ボタンの上下100ptからカーソルを複数表示する
     if (btnY - 100 < mouseY && mouseY < btnY + btnH + 100) {
         let relativeMouseX = (mouseX - btnX) % btnInterval;
-        if (relativeMouseX < btnW && btnY < mouseY && mouseY < btnY + btnH) btnPressed = !btnPressed;
+        if (relativeMouseX < btnW && btnY < mouseY && mouseY < btnY + btnH) {
+            btnPressed = !btnPressed;
+            pressedTime = millis();
+        }
     }
 }
 function drawButton() {
