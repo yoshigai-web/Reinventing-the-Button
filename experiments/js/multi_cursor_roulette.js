@@ -11,8 +11,7 @@ function setup() {
     createCanvas(1200, 800);
     noCursor();
     cursorImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/cursor.png');
-    fingerImg = loadImage('../../img/finger.png');
-    // fingerImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/finger.png');
+    fingerImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/finger.png');
     sound = loadSound('assets/electric voice.mp3');
     btnX = width / 2, btnY = height / 2;
     for (let i = 0; i < cursorNum - 1; i++) roulette[i] = i + 1;
