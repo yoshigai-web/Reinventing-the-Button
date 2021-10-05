@@ -1,8 +1,9 @@
-let btnX, btnY, btnW = 70, btnH = 70;
+let btnX, btnY, btnW = 150, btnH = 150;
 let btnPressed = false;
 let cursorImg;
-let cursorNum = 5;
+let cursorNum = 8;
 let cursorRotation = 0;
+let cursorDistance = 15;
 let roulette = [], rouletteNum;
 let sound;
 let pressedTime;
@@ -36,26 +37,24 @@ function drawButton() {
 function drawCursor() {
     if (btnX < mouseX && mouseX < btnX + btnW && btnY < mouseY && mouseY < btnY + btnH) {
         push();
-        translate(mouseX, mouseY - 10);
+        translate(mouseX, mouseY);
 
-        rotate(cursorRotation += 0.01);
+        rotate(cursorRotation += 0.02);
         for (let i = 0; i < cursorNum; i++) {
             push();
             rotate(2 * PI / cursorNum * roulette[i]);
             if (rouletteNum < i) {
-                if (btnPressed) image(cursorImg, 0, 10 - 8, 286 * 0.06, 429 * 0.06);
-                else image(cursorImg, 0, 10, 286 * 0.08, 429 * 0.08);
-                // image(cursorImg, 0, 10 - btnPressed * 8, 286 * 0.05, 429 * 0.05);
+                if (btnPressed) image(cursorImg, 0, cursorDistance - 4, 286 * 0.08, 429 * 0.08);
+                else image(cursorImg, 0, cursorDistance, 286 * 0.1, 429 * 0.1)
             } else {
-                image(cursorImg, 0, 10, 286 * 0.08, 429 * 0.08);
+                image(cursorImg, 0,cursorDistance, 286 * 0.1, 429 * 0.1);
             }
-
             pop();
         }
         pop();
     } else {
         // draw my cursor
-        image(cursorImg, mouseX, mouseY, 286 * 0.08, 429 * 0.08);
+        image(cursorImg, mouseX, mouseY+cursorDistance, 286 * 0.1, 429 * 0.1);
 
         cursorRotation = 0;
     }
