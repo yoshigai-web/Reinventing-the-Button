@@ -1,9 +1,9 @@
 let btnX, btnY, btnW = 150, btnH = 150;
 let btnPressed = false;
-let cursorImg;
-let cursorNum = 8;
+let cursorImg, fingerImg;
+let cursorNum = 5;
 let cursorRotation = 0;
-let cursorDistance = 15;
+let cursorDistance = 20;
 let roulette = [], rouletteNum;
 let sound;
 let pressedTime;
@@ -11,6 +11,8 @@ function setup() {
     createCanvas(1200, 800);
     noCursor();
     cursorImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/cursor.png');
+    fingerImg = loadImage('../../img/finger.png');
+    // fingerImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/finger.png');
     sound = loadSound('assets/electric voice.mp3');
     btnX = width / 2, btnY = height / 2;
     for (let i = 0; i < cursorNum; i++) roulette[i] = i;
@@ -39,22 +41,22 @@ function drawCursor() {
         push();
         translate(mouseX, mouseY);
 
-        rotate(cursorRotation += 0.02);
+        // rotate(cursorRotation += 0.012);
         for (let i = 0; i < cursorNum; i++) {
             push();
             rotate(2 * PI / cursorNum * roulette[i]);
             if (rouletteNum < i) {
-                if (btnPressed) image(cursorImg, 0, cursorDistance - 4, 286 * 0.08, 429 * 0.08);
-                else image(cursorImg, 0, cursorDistance, 286 * 0.1, 429 * 0.1)
+                if (btnPressed) image(fingerImg, 0, cursorDistance - 5, 202 * 0.15, 257 * 0.15);
+                else image(fingerImg, 0, cursorDistance, 202 * 0.15, 257 * 0.15);
             } else {
-                image(cursorImg, 0,cursorDistance, 286 * 0.1, 429 * 0.1);
+                image(fingerImg, 0, cursorDistance, 202 * 0.15, 257 * 0.15);
             }
             pop();
         }
         pop();
     } else {
         // draw my cursor
-        image(cursorImg, mouseX, mouseY+cursorDistance, 286 * 0.1, 429 * 0.1);
+        image(cursorImg, mouseX, mouseY + cursorDistance, 286 * 0.1, 429 * 0.1);
 
         cursorRotation = 0;
     }
