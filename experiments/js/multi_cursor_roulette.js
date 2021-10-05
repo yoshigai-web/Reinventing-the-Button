@@ -15,7 +15,7 @@ function setup() {
     // fingerImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/finger.png');
     sound = loadSound('assets/electric voice.mp3');
     btnX = width / 2, btnY = height / 2;
-    for (let i = 0; i < cursorNum; i++) roulette[i] = i;
+    for (let i = 0; i < cursorNum - 1; i++) roulette[i] = i + 1;
     roulette = shuffle(roulette);
     rouletteNum = int(random(1, cursorNum - 1));
 }
@@ -42,15 +42,12 @@ function drawCursor() {
         translate(mouseX, mouseY);
 
         // rotate(cursorRotation += 0.012);
-        for (let i = 0; i < cursorNum; i++) {
+        image(fingerImg, 0, cursorDistance, 202 * 0.15, 257 * 0.15);
+        for (let i = 0; i < cursorNum - 1; i++) {
             push();
             rotate(2 * PI / cursorNum * roulette[i]);
-            if (rouletteNum < i) {
-                if (btnPressed) image(fingerImg, 0, cursorDistance - 5, 202 * 0.15, 257 * 0.15);
-                else image(fingerImg, 0, cursorDistance, 202 * 0.15, 257 * 0.15);
-            } else {
-                image(fingerImg, 0, cursorDistance, 202 * 0.15, 257 * 0.15);
-            }
+            if (i < rouletteNum && btnPressed) image(fingerImg, 0, cursorDistance - 8, 202 * 0.15, 257 * 0.15);
+            else image(fingerImg, 0, cursorDistance, 202 * 0.15, 257 * 0.15);
             pop();
         }
         pop();
