@@ -3,6 +3,7 @@ let btnPressed = false;
 let cursorImg;
 let sound;
 let pressedTime;
+let angles = [];
 function setup() {
     createCanvas(1200, 800);
     noCursor();
@@ -10,6 +11,8 @@ function setup() {
     sound = loadSound('assets/electric voice.mp3');
     rectMode(CENTER);
     btnX = width / 2, btnY = height / 2;
+    angles = [0, PI / 4, PI * 4 / 3, PI];
+    angles = shuffle(angles);
 }
 function draw() {
     background(255);
@@ -31,31 +34,40 @@ function drawButton() {
 function drawCursor() {
     push();
         translate(mouseX, mouseY);
+        rotate(angles[0]);
         image(cursorImg, 0, 0, 286 * 0.08, 429 * 0.08);
     pop();
 
     push();
         translate(width - mouseX, mouseY);
-        rotate(PI/4);
+        rotate(angles[1]);
         image(cursorImg, 0, 0, 286 * 0.08, 429 * 0.08);
     pop();
 
     push()
         translate(mouseX, height - mouseY,);
-        rotate(PI*4/3);
+        rotate(angles[2]);
         image(cursorImg, 0, 0, 286 * 0.08, 429 * 0.08);
     pop();
 
     push();
         translate(width - mouseX, height - mouseY);
-        rotate(PI);
+        rotate(angles[3]);
         image(cursorImg, 0, 0, 286 * 0.08, 429 * 0.08);
     pop();
-    
+
 }
 function mousePressed() {
     if (btnX - btnW / 2 < mouseX && mouseX < btnX + btnW / 2 && btnY - btnH / 2 < mouseY && mouseY < btnY + btnH) {
         btnPressed = !btnPressed;
         pressedTime = millis();
+        angles = shuffle(angles);
     }
+}
+const shuffle = ([...array]) => {
+    for (let i = array.length - 1; i >= 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
 }
