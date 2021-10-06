@@ -31,27 +31,23 @@ function drawButton() {
 function drawCursor() {
     push();
         translate(mouseX, mouseY);
-        // rotate(frameCount/10.0);
         image(cursorImg, 0, 0, 286 * 0.08, 429 * 0.08);
     pop();
 
     push();
         translate(width - mouseX, mouseY);
-        // rotate(frameCount/10.0);
         rotate(PI/4);
         image(cursorImg, 0, 0, 286 * 0.08, 429 * 0.08);
     pop();
 
     push()
         translate(mouseX, height - mouseY,);
-        // rotate(frameCount/10.0);
         rotate(PI*4/3);
         image(cursorImg, 0, 0, 286 * 0.08, 429 * 0.08);
     pop();
 
     push();
         translate(width - mouseX, height - mouseY);
-        // rotate(frameCount/10.0);
         rotate(PI);
         image(cursorImg, 0, 0, 286 * 0.08, 429 * 0.08);
     pop();
