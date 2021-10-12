@@ -5,7 +5,7 @@ let cursorNum = 5;
 let cursorRotation = 0;
 let cursorDistance = [];    // 250
 let cursorSpeed = [3, 3.5, 4, 6];
-const curorFinalDistance = 20;
+const curorFinalDistance = -2;
 let isReached = [];
 let pressedX, pressedY;
 let sound;
@@ -19,7 +19,7 @@ function setup() {
     btnX = width / 2, btnY = height / 2;
     for (let i = 0; i < cursorNum - 1; i++) {
         cursorDistance[i] = 250;
-        cursorSpeed=shuffle(cursorSpeed);
+        cursorSpeed = shuffle(cursorSpeed);
         isReached[i] = false;
     }
 }
@@ -33,10 +33,10 @@ function draw() {
             // init
             for (let i = 0; i < cursorNum - 1; i++) {
                 cursorDistance[i] = 250;
-                cursorSpeed=shuffle(cursorSpeed);
+                cursorSpeed = shuffle(cursorSpeed);
                 isReached[i] = false;
             }
-        }else{
+        } else {
             if (int(random(10 * 30)) == 0) sound.play();
         }
     }
@@ -49,25 +49,26 @@ function drawButton() {
     rect(btnX, btnY, btnW, btnH);
 }
 function drawCursor() {
-    if (btnX < mouseX && mouseX < btnX + btnW && btnY < mouseY && mouseY < btnY + btnH) {   // on hover
-        image(fingerImg, mouseX, mouseY, 202 * 0.15, 257 * 0.15);
-    } else {    // draw my cursor
-        image(cursorImg, mouseX, mouseY, 286 * 0.1, 429 * 0.1);
-    }
     // other cursors
     if (btnPressed) {
         push();
-        translate(pressedX, pressedY - curorFinalDistance);
+        translate(pressedX+8, pressedY - curorFinalDistance);
         for (let i = 0; i < cursorNum - 1; i++) {
             if (cursorDistance[i] > curorFinalDistance) cursorDistance[i] -= cursorSpeed[i];
             else isReached[i] = true;
 
             push();
             rotate(2 * PI / cursorNum * (i + 1));
-            image(fingerImg, 0, cursorDistance[i], 202 * 0.15, 257 * 0.15);
+            image(fingerImg, -14, cursorDistance[i], 202 * 0.15, 257 * 0.15);
             pop();
         }
         pop();
+    }
+    // my cursor
+    if (btnX < mouseX && mouseX < btnX + btnW && btnY < mouseY && mouseY < btnY + btnH) {   // on hover
+        image(fingerImg, mouseX, mouseY, 202 * 0.15, 257 * 0.15);
+    } else {    // draw my cursor
+        image(cursorImg, mouseX, mouseY, 286 * 0.1, 429 * 0.1);
     }
 }
 function mousePressed() {
