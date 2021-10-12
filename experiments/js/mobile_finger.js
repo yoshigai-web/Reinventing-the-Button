@@ -1,11 +1,11 @@
-let btnX, btnY, btnW = 400, btnH = 250;
+let btnX, btnY, btnW = 400, btnH = 400;
 let btnPressed = false;
 let cursorImg, fingerImg;
 let cursorNum = 5;
 let cursorRotation = 0;
 let cursorDistance = [];    // 250
 let cursorSpeed = [3, 3.5, 4, 6];
-const curorFinalDistance = 40;
+const curorFinalDistance = 30;
 let isReached = [];
 let pressedX, pressedY;
 let sound;
@@ -61,7 +61,7 @@ function drawCursor() {
 
             push();
             rotate(2 * PI / cursorNum * (i + 1));
-            image(fingerImg, 0, cursorDistance[i], 202 * 0.7, 257 * 0.7);
+            image(fingerImg, 0, cursorDistance[i], 202 * 2, 257 * 2);
             pop();
         }
         pop();
