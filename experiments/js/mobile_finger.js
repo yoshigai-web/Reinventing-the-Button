@@ -16,6 +16,7 @@ function setup() {
     cursorImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/cursor.png');
     fingerImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/finger.png');
     sound = loadSound('assets/electric voice.mp3');
+    pixelDensity(1);
     btnX = width / 2 - btnW / 2, btnY = height / 2 - btnH / 2;
     for (let i = 0; i < cursorNum - 1; i++) {
         cursorDistance[i] = 250;
@@ -67,11 +68,13 @@ function drawCursor() {
     }
 }
 function touchStarted() {
-    let touchX = touches[0].x, touchY = touches[0].y;
-    if (btnX < touchX && touchX < btnX + btnW && btnY < touchY && touchY < btnY + btnH && !btnPressed) {
-        btnPressed = true;
-        pressedTime = millis();
-        pressedX = touchX, pressedY = touchY;
+    if (touches.length > 0) {
+        let touchX = touches[0].x, touchY = touches[0].y;
+        if (btnX < touchX && touchX < btnX + btnW && btnY < touchY && touchY < btnY + btnH && !btnPressed) {
+            btnPressed = true;
+            pressedTime = millis();
+            pressedX = touchX, pressedY = touchY;
+        }
     }
 }
 const shuffle = ([...array]) => {
