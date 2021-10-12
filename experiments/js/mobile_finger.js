@@ -4,8 +4,8 @@ let cursorImg, fingerImg;
 let cursorNum = 5;
 let cursorRotation = 0;
 let cursorDistance = [];    // 250
-let cursorSpeed = [3, 3.5, 4, 6];
-const curorFinalDistance = 30;
+let cursorSpeed = [4, 5, 8, 10];
+const curorFinalDistance = -20;
 let isReached = [];
 let pressedX, pressedY;
 let sound;
@@ -19,7 +19,7 @@ function setup() {
     pixelDensity(1);
     btnX = width / 2 - btnW / 2, btnY = height / 2 - btnH / 2;
     for (let i = 0; i < cursorNum - 1; i++) {
-        cursorDistance[i] = 250;
+        cursorDistance[i] = 450;
         cursorSpeed = shuffle(cursorSpeed);
         isReached[i] = false;
     }
@@ -29,11 +29,11 @@ function draw() {
     drawButton();
     drawCursor();
     if (btnPressed && !isReached.includes(false)) {
-        if (millis() - pressedTime > 2000) {
+        if (millis() - pressedTime > 3000) {
             btnPressed = false;
             // init
             for (let i = 0; i < cursorNum - 1; i++) {
-                cursorDistance[i] = 250;
+                cursorDistance[i] = 450;
                 cursorSpeed = shuffle(cursorSpeed);
                 isReached[i] = false;
             }
@@ -61,7 +61,7 @@ function drawCursor() {
 
             push();
             rotate(2 * PI / cursorNum * (i + 1));
-            image(fingerImg, 0, cursorDistance[i], 202 * 2, 257 * 2);
+            image(fingerImg, -150, cursorDistance[i], 202 * 2, 257 * 2);
             pop();
         }
         pop();
