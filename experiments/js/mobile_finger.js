@@ -4,8 +4,8 @@ let cursorImg, fingerImg;
 let cursorNum = 5;
 let cursorRotation = 0;
 let cursorDistance = [];    // 250
-let cursorSpeed = [4, 5, 8, 10];
-const curorFinalDistance = -20;
+let cursorSpeed = [7, 8, 9, 10];
+const curorFinalDistance = -10;
 let isReached = [];
 let pressedX, pressedY;
 let sound;
@@ -14,7 +14,7 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     noCursor();
     cursorImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/cursor.png');
-    fingerImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/finger.png');
+    fingerImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/finger_pic.png');
     sound = loadSound('assets/electric voice.mp3');
     pixelDensity(1);
     btnX = width / 2 - btnW / 2, btnY = height / 2 - btnH / 2;
@@ -61,7 +61,7 @@ function drawCursor() {
 
             push();
             rotate(2 * PI / cursorNum * (i + 1));
-            image(fingerImg, -150, cursorDistance[i], 202 * 2, 257 * 2);
+            image(fingerImg, -335, cursorDistance[i], 284 * 2.5, 497 * 2.5);
             pop();
         }
         pop();
