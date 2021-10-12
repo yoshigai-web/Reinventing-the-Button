@@ -4,7 +4,7 @@ let cursorImg, fingerImg;
 let cursorNum = 5;
 let cursorRotation = 0;
 let cursorDistance = [];    // 250
-let cursorSpeed = [7, 8, 9, 10];
+let cursorSpeed = [11, 12, 13, 14];
 const curorFinalDistance = -10;
 let isReached = [];
 let pressedX, pressedY;
