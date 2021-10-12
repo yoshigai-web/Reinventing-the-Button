@@ -4,9 +4,10 @@ let cursorImg, fingerImg;
 let cursorNum = 5;
 let cursorRotation = 0;
 let cursorDistance = [];    // 250
-let cursorSpeed = []
+let cursorSpeed = [3, 3.5, 4, 6];
 const curorFinalDistance = 20;
-let roulette = [], rouletteNum;
+let isReached = [];
+let pressedX, pressedY;
 let sound;
 let pressedTime;
 function setup() {
@@ -16,65 +17,64 @@ function setup() {
     fingerImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/finger.png');
     sound = loadSound('assets/electric voice.mp3');
     btnX = width / 2, btnY = height / 2;
-    for (let i = 0; i < cursorNum - 1; i++) roulette[i] = i + 1;
-    roulette = shuffle(roulette);
-    rouletteNum = int(random(1, cursorNum - 1));
     for (let i = 0; i < cursorNum - 1; i++) {
         cursorDistance[i] = 250;
-        cursorSpeed[i] = random(5, 15);
+        cursorSpeed=shuffle(cursorSpeed);
+        isReached[i] = false;
     }
 }
 function draw() {
     background(255);
     drawButton();
     drawCursor();
-    if (btnPressed) {
-        if (int(random(10 * 30)) == 0) sound.play();
-    }
-    if (btnPressed && millis() - pressedTime > 500) {
-        btnPressed = false;
+    if (btnPressed && !isReached.includes(false)) {
+        if (millis() - pressedTime > 2000) {
+            btnPressed = false;
+            // init
+            for (let i = 0; i < cursorNum - 1; i++) {
+                cursorDistance[i] = 250;
+                cursorSpeed=shuffle(cursorSpeed);
+                isReached[i] = false;
+            }
+        }else{
+            if (int(random(10 * 30)) == 0) sound.play();
+        }
     }
 }
 function drawButton() {
-    if (btnPressed) fill(255, 0, 0);
-    else if (btnX < mouseX && mouseX < btnX + btnW && btnY < mouseY && mouseY < btnY + btnH) fill(255, 100, 100, 100);
+    let isReachedNum = isReached.filter(x => x === true).length;
+    if (btnPressed) fill(255, 100 - isReachedNum * 100 / (cursorNum - 1), 100 - isReachedNum * 100 / (cursorNum - 1), 50 + isReachedNum * 205 / (cursorNum - 1));
+    else if (btnX < mouseX && mouseX < btnX + btnW && btnY < mouseY && mouseY < btnY + btnH) fill(255, 100, 100, 50);
     else fill(255);
     rect(btnX, btnY, btnW, btnH);
 }
 function drawCursor() {
     if (btnX < mouseX && mouseX < btnX + btnW && btnY < mouseY && mouseY < btnY + btnH) {   // on hover
+        image(fingerImg, mouseX, mouseY, 202 * 0.15, 257 * 0.15);
+    } else {    // draw my cursor
+        image(cursorImg, mouseX, mouseY, 286 * 0.1, 429 * 0.1);
+    }
+    // other cursors
+    if (btnPressed) {
         push();
-        translate(mouseX, mouseY);
-        image(fingerImg, 0, 0, 202 * 0.15, 257 * 0.15);
-        translate(0, -curorFinalDistance);
+        translate(pressedX, pressedY - curorFinalDistance);
         for (let i = 0; i < cursorNum - 1; i++) {
             if (cursorDistance[i] > curorFinalDistance) cursorDistance[i] -= cursorSpeed[i];
-            else cursorDistance[i] = curorFinalDistance;
+            else isReached[i] = true;
+
             push();
-            rotate(2 * PI / cursorNum * roulette[i]);
-            if (i < rouletteNum && btnPressed) image(fingerImg, 0, cursorDistance[i] - 8, 202 * 0.15, 257 * 0.15);
-            else image(fingerImg, 0, cursorDistance[i], 202 * 0.15, 257 * 0.15);
+            rotate(2 * PI / cursorNum * (i + 1));
+            image(fingerImg, 0, cursorDistance[i], 202 * 0.15, 257 * 0.15);
             pop();
         }
-
         pop();
-    } else {
-        // draw my cursor
-        image(cursorImg, mouseX, mouseY, 286 * 0.1, 429 * 0.1);
-        // init
-        for (let i = 0; i < cursorNum - 1; i++) {
-            cursorDistance[i] = 250;
-            cursorSpeed[i] = random(5, 15);
-        }
     }
 }
 function mousePressed() {
-    if (btnX < mouseX && mouseX < btnX + btnW && btnY < mouseY && mouseY < btnY + btnH) {
-        btnPressed = !btnPressed;
+    if (btnX < mouseX && mouseX < btnX + btnW && btnY < mouseY && mouseY < btnY + btnH && !btnPressed) {
+        btnPressed = true;
         pressedTime = millis();
-        roulette = shuffle(roulette);
-        rouletteNum = int(random(1, cursorNum - 1));
-        print(rouletteNum, roulette)
+        pressedX = mouseX, pressedY = mouseY;
     }
 }
 const shuffle = ([...array]) => {
