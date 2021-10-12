@@ -1,4 +1,4 @@
-let btnX, btnY, btnW = 250, btnH = 150;
+let btnX, btnY, btnW = 400, btnH = 250;
 let btnPressed = false;
 let cursorImg, fingerImg;
 let cursorNum = 5;
@@ -48,7 +48,7 @@ function drawButton() {
     else if (btnX < mouseX && mouseX < btnX + btnW && btnY < mouseY && mouseY < btnY + btnH) fill(255, 100, 100, 50);
     else fill(255);
     strokeWeight(5);
-    rect(btnX, btnY, btnW, btnH);
+    rect(btnX, btnY, btnW, btnH, 10);
 }
 function drawCursor() {
     // other cursors
@@ -61,7 +61,7 @@ function drawCursor() {
 
             push();
             rotate(2 * PI / cursorNum * (i + 1));
-            image(fingerImg, 0, cursorDistance[i], 202 * 0.15, 257 * 0.15);
+            image(fingerImg, 0, cursorDistance[i], 202 * 0.7, 257 * 0.7);
             pop();
         }
         pop();
