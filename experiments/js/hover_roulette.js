@@ -3,7 +3,8 @@ let btnPressed = false;
 let cursorImg, fingerImg;
 let cursorNum = 5;
 let cursorRotation = 0;
-let cursorDistance = 250;
+let cursorDistance = [];    // 250
+let cursorSpeed = []
 const curorFinalDistance = 20;
 let roulette = [], rouletteNum;
 let sound;
@@ -18,6 +19,10 @@ function setup() {
     for (let i = 0; i < cursorNum - 1; i++) roulette[i] = i + 1;
     roulette = shuffle(roulette);
     rouletteNum = int(random(1, cursorNum - 1));
+    for (let i = 0; i < cursorNum - 1; i++) {
+        cursorDistance[i] = 250;
+        cursorSpeed[i] = random(5, 15);
+    }
 }
 function draw() {
     background(255);
@@ -40,25 +45,27 @@ function drawCursor() {
     if (btnX < mouseX && mouseX < btnX + btnW && btnY < mouseY && mouseY < btnY + btnH) {   // on hover
         push();
         translate(mouseX, mouseY);
-
-        // // rotate(cursorRotation += 0.012);
         image(fingerImg, 0, 0, 202 * 0.15, 257 * 0.15);
         translate(0, -curorFinalDistance);
         for (let i = 0; i < cursorNum - 1; i++) {
+            if (cursorDistance[i] > curorFinalDistance) cursorDistance[i] -= cursorSpeed[i];
+            else cursorDistance[i] = curorFinalDistance;
             push();
             rotate(2 * PI / cursorNum * roulette[i]);
-            if (i < rouletteNum && btnPressed) image(fingerImg, 0, cursorDistance - 8, 202 * 0.15, 257 * 0.15);
-            else image(fingerImg, 0, cursorDistance, 202 * 0.15, 257 * 0.15);
+            if (i < rouletteNum && btnPressed) image(fingerImg, 0, cursorDistance[i] - 8, 202 * 0.15, 257 * 0.15);
+            else image(fingerImg, 0, cursorDistance[i], 202 * 0.15, 257 * 0.15);
             pop();
         }
-        if (cursorDistance > curorFinalDistance) cursorDistance -= 10;
+
         pop();
     } else {
         // draw my cursor
         image(cursorImg, mouseX, mouseY, 286 * 0.1, 429 * 0.1);
         // init
-        cursorDistance = 250;
-        cursorRotation = 0;
+        for (let i = 0; i < cursorNum - 1; i++) {
+            cursorDistance[i] = 250;
+            cursorSpeed[i] = random(5, 15);
+        }
     }
 }
 function mousePressed() {
