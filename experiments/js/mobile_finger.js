@@ -29,7 +29,7 @@ function draw() {
     drawButton();
     drawCursor();
     if (btnPressed && !isReached.includes(false)) {
-        if (millis() - pressedTime > 3000) {
+        if (millis() - pressedTime > 4000) {
             btnPressed = false;
             // init
             for (let i = 0; i < cursorNum - 1; i++) {
