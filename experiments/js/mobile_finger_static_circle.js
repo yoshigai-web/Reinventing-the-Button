@@ -1,7 +1,7 @@
 let btnX, btnY, btnW = 400, btnH = 400;
 let btnPressed = false;
 let cursorImg, fingerImg;
-let cursorNum;
+let cursorNum = 5;
 let cursorRotation = 0;
 let cursorDistance = -10;
 let pressedX, pressedY;
