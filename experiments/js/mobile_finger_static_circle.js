@@ -1,12 +1,13 @@
 let btnX, btnY, btnW = 400, btnH = 400;
 let btnPressed = false;
 let cursorImg, fingerImg;
-let cursorNum = 5;
+let cursorNum;
 let cursorRotation = 0;
 let cursorDistance = -10;
 let pressedX, pressedY;
 let sound;
 let pressedTime;
+let sel;
 function setup() {
     createCanvas(windowWidth, windowHeight);
     noCursor();
@@ -15,6 +16,14 @@ function setup() {
     sound = loadSound('assets/electric voice.mp3');
     pixelDensity(1);
     btnX = width / 2 - btnW / 2, btnY = height / 2 - btnH / 2;
+
+    sel = createSelect();
+    sel.position(10, 10);
+    sel.option(2);
+    sel.option(3);
+    sel.option(4);
+    sel.selected(5);
+    sel.changed(mySelectEvent);
 }
 function draw() {
     background(255);
@@ -29,7 +38,7 @@ function draw() {
     }
 }
 function drawButton() {
-    if (btnPressed) fill(255, 0,0);
+    if (btnPressed) fill(255, 0, 0);
     else if (btnX < mouseX && mouseX < btnX + btnW && btnY < mouseY && mouseY < btnY + btnH) fill(255, 100, 100, 50);
     else fill(255);
     strokeWeight(5);
@@ -65,4 +74,7 @@ const shuffle = ([...array]) => {
         [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
+}
+function mySelectEvent() {
+    cursorNum = sel.value();
 }
