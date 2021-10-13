@@ -22,6 +22,7 @@ function setup() {
     sel.option(2);
     sel.option(3);
     sel.option(4);
+    sel.option(5);
     sel.selected(5);
     sel.changed(mySelectEvent);
 }
