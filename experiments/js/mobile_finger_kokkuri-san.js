@@ -37,7 +37,7 @@ function draw() {
         } else {
             if (int(random(10 * 30)) == 0) sound.play();
             push();
-            translate(releasedX, releasedY - cursorDistance);
+            translate(releasedX, releasedY - cursorDistance - 100);
             for (let i = 0; i < cursorNum - 1; i++) {
                 push();
                 rotate(2 * PI / cursorNum * (i + 1));
@@ -59,7 +59,7 @@ function drawFinger() {
     // other cursors
     if (touches.length > 0) {
         push();
-        translate(touches[0].x, touches[0].y - cursorDistance);
+        translate(touches[0].x, touches[0].y - cursorDistance - 100);
         for (let i = 0; i < cursorNum - 1; i++) {
             push();
             rotate(2 * PI / cursorNum * (i + 1));
