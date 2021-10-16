@@ -37,7 +37,7 @@ function draw() {
                 isReached[i] = false;
             }
         } else {
-            // if (int(random(10 * 30)) == 0) sound.play();
+            if (int(random(10 * 30)) == 0) sound.play();
         }
     }
 }
