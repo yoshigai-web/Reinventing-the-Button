@@ -5,7 +5,7 @@ let cursorNum = 5;
 let cursorRotation = 0;
 let cursorDistance = [];    // 250
 let cursorSpeed = [3, 3.5, 4, 6];
-const curorFinalDistance = -2;
+const curorFinalDistance = 40;
 let isReached = [];
 let pressedX, pressedY;
 let sound;
