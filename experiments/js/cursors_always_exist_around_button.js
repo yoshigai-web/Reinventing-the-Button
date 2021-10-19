@@ -100,6 +100,11 @@ function mousePressed() {
     if (btnX < mouseX && mouseX < btnX + btnW && btnY < mouseY && mouseY < btnY + btnH && !btnPressed) {
         btnPressed = true;
         pressedTime = millis();
+    }else{
+        for (let i = 0; i < cursorNum - 1; i++) {
+            cursorDistance[i] = 250;
+            isReached[i] = false;
+        }
     }
 }
 const shuffle = ([...array]) => {
