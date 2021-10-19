@@ -1,22 +1,21 @@
-let btnX, btnY, btnW = 150, btnH = 150;
+let btnX = 845, btnY = 715, btnW = 160, btnH = 55;
 let btnPressed = false;
 let cursorImg, fingerImg;
 let cursorNum = 5;
 let cursorRotation = 0;
 let cursorDistance = [];    // 250
 let cursorSpeed = [3, 3.5, 4, 6];
-const curorFinalDistance = 40;
+const curorFinalDistance = 15;
 let isReached = [];
 let pressedX, pressedY;
-let sound;
 let pressedTime;
+let purchaseScreen;
 function setup() {
-    createCanvas(1200, 1000);
+    createCanvas(1300, 1000);
     noCursor();
+    purchaseScreen = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/travel.png');
     cursorImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/cursor.png');
     fingerImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/finger.png');
-    sound = loadSound('assets/electric voice.mp3');
-    btnX = width / 2, btnY = height / 2;
     for (let i = 0; i < cursorNum - 1; i++) {
         cursorDistance[i] = 250;
         cursorSpeed = shuffle(cursorSpeed);
@@ -25,10 +24,13 @@ function setup() {
 }
 function draw() {
     background(255);
-    drawButton();
-    drawCursor();
+    if (isReached.includes(false)) {
+        image(purchaseScreen, 75, 20);
+        drawButton();
+        drawCursor();
+    }
     if (btnPressed && !isReached.includes(false)) {
-        if (millis() - pressedTime > 2000) {
+        if (millis() - pressedTime > 3500) {
             btnPressed = false;
             // init
             for (let i = 0; i < cursorNum - 1; i++) {
@@ -37,7 +39,9 @@ function draw() {
                 isReached[i] = false;
             }
         } else {
-            if (int(random(10 * 30)) == 0) sound.play();
+            fill(0);
+            textSize(30);
+            text("Thank you for shopping!", width / 2, height / 2);
         }
     }
 }
@@ -46,7 +50,10 @@ function drawButton() {
     if (btnPressed) fill(255, 100 - isReachedNum * 100 / (cursorNum - 1), 100 - isReachedNum * 100 / (cursorNum - 1), 50 + isReachedNum * 205 / (cursorNum - 1));
     else if (btnX < mouseX && mouseX < btnX + btnW && btnY < mouseY && mouseY < btnY + btnH) fill(255, 100, 100, 50);
     else fill(255);
-    rect(btnX, btnY, btnW, btnH);
+    rect(btnX, btnY, btnW, btnH, 5);
+    fill(0);
+    textSize(20);
+    text("予約", btnX + 55, btnY + 35);
 }
 function drawCursor() {
     // other cursors
