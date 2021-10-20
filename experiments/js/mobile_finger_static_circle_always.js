@@ -9,7 +9,7 @@ let pressedTime;
 let sel;
 let purchaseScreen;
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(981, 2123);
     noCursor();
     cursorImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/cursor.png');
     fingerImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/finger_pic.png');
@@ -35,7 +35,7 @@ function draw() {
             btnTouched = false;
         }
     } else {
-        image(purchaseScreen, 0, 0, width, height);
+        image(purchaseScreen, 0, 0, 981, 2123);
         // drawButton();
         drawFinger();
     }
@@ -69,6 +69,17 @@ function drawFinger() {
             pop();
         }
         pop();
+    }
+}
+function touchStarted(){
+    if (touches.length > 0) {
+        let touchX = touches[0].x, touchY = touches[0].y;
+        if (btnX < touchX && touchX < btnX + btnW && btnY < touchY && touchY < btnY + btnH && !btnPressed) {
+            pressedX = touchX, pressedY = touchY;
+            btnTouched = true;
+        } else {
+            btnTouched = false;
+        }
     }
 }
 function touchMoved() {
