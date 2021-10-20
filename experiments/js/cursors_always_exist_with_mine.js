@@ -7,6 +7,7 @@ let cursorDistance = [];    // 250
 let cursorSpeed = [3, 3.5, 4, 6];
 const curorFinalDistance = 15;
 let isReached = [];
+let preCursorNum;
 let pressedX, pressedY;
 let pressedTime;
 let purchaseScreen;
@@ -18,9 +19,10 @@ function setup() {
     fingerImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/finger.png');
     for (let i = 0; i < cursorNum - 1; i++) {
         cursorDistance[i] = 250;
-        cursorSpeed = shuffle(cursorSpeed);
         isReached[i] = false;
     }
+    cursorSpeed = shuffle(cursorSpeed);
+    preCursorNum = int(random(1, cursorNum - 1));
 }
 function draw() {
     background(255);
@@ -35,9 +37,10 @@ function draw() {
             // init
             for (let i = 0; i < cursorNum - 1; i++) {
                 cursorDistance[i] = 250;
-                cursorSpeed = shuffle(cursorSpeed);
                 isReached[i] = false;
             }
+            cursorSpeed = shuffle(cursorSpeed);
+            preCursorNum = int(random(1, cursorNum - 1));
         } else {
             fill(0);
             textSize(30);
@@ -59,7 +62,7 @@ function drawCursor() {
     // other cursors
     if (btnPressed) {
         push();
-        translate(pressedX + 8, pressedY - curorFinalDistance);
+        translate(btnX + btnW / 2 + 8, btnY + btnH / 2);
         for (let i = 0; i < cursorNum - 1; i++) {
             if (cursorDistance[i] > curorFinalDistance) cursorDistance[i] -= cursorSpeed[i];
             else isReached[i] = true;
@@ -70,7 +73,25 @@ function drawCursor() {
             pop();
         }
         pop();
+    } else if (btnX < mouseX && mouseX < btnX + btnW && btnY < mouseY && mouseY < btnY + btnH) {    // on hover
+        push();
+        translate(btnX + btnW / 2 + 8, btnY + btnH / 2);
+        for (let i = 0; i < cursorNum - 1; i++) {
+            if (i < preCursorNum) {
+                if (cursorDistance[i] > curorFinalDistance) cursorDistance[i] -= cursorSpeed[i];
+                else isReached[i] = true;
+            }
+            push();
+            rotate(2 * PI / cursorNum * (i + 1));
+            image(fingerImg, -14, cursorDistance[i], 202 * 0.15, 257 * 0.15);
+            pop();
+        }
+        pop();
     } else {
+        for (let i = 0; i < cursorNum - 1; i++) {
+            cursorDistance[i] = 250;
+            isReached[i] = false;
+        }
         push();
         translate(mouseX + 8, mouseY - curorFinalDistance);
         for (let i = 0; i < cursorNum - 1; i++) {
