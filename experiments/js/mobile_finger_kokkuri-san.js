@@ -11,7 +11,7 @@ let touchX, touchY;
 let releasedX, releasedY;
 let purchaseScreen;
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(981, 2123);
     noCursor();
     cursorImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/cursor.png');
     fingerImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/finger_pic.png');
@@ -37,7 +37,7 @@ function draw() {
             text("Thank you for shopping!", 150, height / 2);
         }
     }else{
-        image(purchaseScreen, 0, 0, width, height);
+        image(purchaseScreen, 0, 0, 981, 2123);
         // drawButton();
         drawFinger();
     }
