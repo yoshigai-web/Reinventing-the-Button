@@ -1,4 +1,4 @@
-let btnX, btnY, btnW = 400, btnH = 400;
+let btnX = 30, btnY = 1660, btnW = 925, btnH = 125;
 let btnPressed = false;
 let cursorImg, fingerImg;
 let cursorNum = 5;
@@ -9,15 +9,14 @@ let pressedTime;
 let sel;
 let touchX, touchY;
 let releasedX, releasedY;
+let purchaseScreen;
 function setup() {
     createCanvas(windowWidth, windowHeight);
     noCursor();
     cursorImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/cursor.png');
     fingerImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/finger_pic.png');
-    sound = loadSound('assets/electric voice.mp3');
+    purchaseScreen = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/book_mobile.png');
     pixelDensity(1);
-    btnX = width / 2 - btnW / 2, btnY = height / 2 - btnH / 2;
-
     sel = createSelect();
     sel.position(10, 10);
     sel.option(2);
@@ -29,23 +28,18 @@ function setup() {
 }
 function draw() {
     background(255);
-    drawButton();
-    drawFinger();
     if (btnPressed) {
         if (millis() - pressedTime > 1500) {
             btnPressed = false;
         } else {
-            if (int(random(10 * 30)) == 0) sound.play();
-            push();
-            translate(releasedX, releasedY - cursorDistance - 100);
-            for (let i = 0; i < cursorNum - 1; i++) {
-                push();
-                rotate(2 * PI / cursorNum * (i + 1));
-                image(fingerImg, -335, cursorDistance, 284 * 2.5, 497 * 2.5);
-                pop();
-            }
-            pop();
+            fill(0);
+            textSize(60);
+            text("Thank you for shopping!", 150, height / 2);
         }
+    }else{
+        image(purchaseScreen, 0, 0, width, height);
+        // drawButton();
+        drawFinger();
     }
 }
 function drawButton() {
@@ -59,7 +53,7 @@ function drawFinger() {
     // other cursors
     if (touches.length > 0) {
         push();
-        translate(touches[0].x, touches[0].y - cursorDistance - 100);
+        translate(touches[0].x, touches[0].y - cursorDistance - 20);
         for (let i = 0; i < cursorNum - 1; i++) {
             push();
             rotate(2 * PI / cursorNum * (i + 1));
