@@ -1,4 +1,4 @@
-let btnX = 30, btnY = 1660, btnW = 925, btnH = 125;
+let btnX = 30, btnY = 1660 - 120, btnW = 925, btnH = 125;
 let btnTouched = false, btnPressed = false;
 let cursorImg, fingerImg;
 let cursorNum = 5;
@@ -35,7 +35,7 @@ function draw() {
             btnTouched = false;
         }
     } else {
-        image(purchaseScreen, 0, 0, 981, 2123);
+        image(purchaseScreen, 0, -120, 981, 2123);
         // drawButton();
         drawFinger();
     }
@@ -71,7 +71,7 @@ function drawFinger() {
         pop();
     }
 }
-function touchStarted(){
+function touchStarted() {
     if (touches.length > 0) {
         let touchX = touches[0].x, touchY = touches[0].y;
         if (btnX < touchX && touchX < btnX + btnW && btnY < touchY && touchY < btnY + btnH && !btnPressed) {

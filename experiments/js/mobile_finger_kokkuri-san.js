@@ -1,4 +1,4 @@
-let btnX = 30, btnY = 1660, btnW = 925, btnH = 125;
+let btnX = 30, btnY = 1660 - 120, btnW = 925, btnH = 125;
 let btnPressed = false;
 let cursorImg, fingerImg;
 let cursorNum = 5;
@@ -36,8 +36,8 @@ function draw() {
             textSize(60);
             text("Thank you for shopping!", 150, height / 2);
         }
-    }else{
-        image(purchaseScreen, 0, 0, 981, 2123);
+    } else {
+        image(purchaseScreen, 0, -120, 981, 2123);
         // drawButton();
         drawFinger();
     }
