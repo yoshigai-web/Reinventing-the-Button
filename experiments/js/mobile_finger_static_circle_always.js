@@ -1,22 +1,20 @@
-let btnX, btnY, btnW = 400, btnH = 400;
-let btnPressed = false;
+let btnX = 30, btnY = 1660, btnW = 925, btnH = 125;
+let btnTouched = false, btnPressed = false;
 let cursorImg, fingerImg;
 let cursorNum = 5;
 let cursorRotation = 0;
 let cursorDistance = -10;
 let pressedX, pressedY;
-let sound;
 let pressedTime;
 let sel;
+let purchaseScreen;
 function setup() {
     createCanvas(windowWidth, windowHeight);
     noCursor();
     cursorImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/cursor.png');
     fingerImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/finger_pic.png');
-    sound = loadSound('assets/electric voice.mp3');
+    purchaseScreen = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/book_mobile.png');
     pixelDensity(1);
-    btnX = width / 2 - btnW / 2, btnY = height / 2 - btnH / 2;
-
     sel = createSelect();
     sel.position(10, 10);
     sel.option(2);
@@ -28,14 +26,18 @@ function setup() {
 }
 function draw() {
     background(255);
-    drawButton();
-    drawFinger();
     if (btnPressed) {
-        if (millis() - pressedTime > 1500) {
+        fill(0);
+        textSize(60);
+        text("Thank you for shopping!", 150, height / 2);
+        if (millis() - pressedTime > 3500) {
             btnPressed = false;
-        } else {
-            if (int(random(10 * 30)) == 0) sound.play();
+            btnTouched = false;
         }
+    } else {
+        image(purchaseScreen, 0, 0, width, height);
+        // drawButton();
+        drawFinger();
     }
 }
 function drawButton() {
@@ -47,7 +49,7 @@ function drawButton() {
 }
 function drawFinger() {
     // other cursors
-    if (btnPressed) {
+    if (btnTouched) {
         push();
         translate(pressedX, pressedY - cursorDistance);
         for (let i = 0; i < cursorNum - 1; i++) {
@@ -57,26 +59,33 @@ function drawFinger() {
             pop();
         }
         pop();
-    }else{
+    } else {
         push();
-        translate(btnX+btnW/2, btnY+btnH/2 - cursorDistance);
+        translate(btnX + btnW / 2, btnY + btnH / 2 - cursorDistance);
         for (let i = 0; i < cursorNum - 1; i++) {
             push();
             rotate(2 * PI / cursorNum * (i + 1));
-            image(fingerImg, -335, cursorDistance+350, 284 * 2.5, 497 * 2.5);
+            image(fingerImg, -335, cursorDistance + 350, 284 * 2.5, 497 * 2.5);
             pop();
         }
         pop();
     }
 }
-function touchStarted() {
+function touchMoved() {
     if (touches.length > 0) {
         let touchX = touches[0].x, touchY = touches[0].y;
         if (btnX < touchX && touchX < btnX + btnW && btnY < touchY && touchY < btnY + btnH && !btnPressed) {
-            btnPressed = true;
-            pressedTime = millis();
             pressedX = touchX, pressedY = touchY;
+            btnTouched = true;
+        } else {
+            btnTouched = false;
         }
+    }
+}
+function touchEnded() {
+    if (btnTouched) {
+        btnPressed = true;
+        pressedTime = millis();
     }
 }
 const shuffle = ([...array]) => {
