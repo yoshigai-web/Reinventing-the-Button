@@ -1,4 +1,4 @@
-let btnX = 30, btnY = 1660 - 120, btnW = 925, btnH = 125;
+let btnX = 30, btnY = 1610 - 120, btnW = 925, btnH = 125;
 let btnTouched = false, btnPressed = false;
 let cursorImg, fingerImg;
 let cursorNum = 5;
@@ -35,7 +35,7 @@ function draw() {
             btnTouched = false;
         }
     } else {
-        image(purchaseScreen, 0, -120, 981, 2123);
+        image(purchaseScreen, 0, -170, 981, 2123);
         // drawButton();
         drawFinger();
     }
