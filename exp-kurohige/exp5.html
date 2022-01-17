@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>test</title>
+
+    <script src="https://cdn.socket.io/3.0.0/socket.io.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.3.1/lib/p5.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <style>
+        * {
+            -webkit-user-select: none;
+            user-select: none;
+            touch-action: none;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script>
+        // 2人で2つの独立したボタンを押す のヴァーチャル版
+        let btnX = [], btnY, btnW = 200, btnH = 200;
+        let btnPressed = false;
+        let btnCount = 0, btnAtari, isShoted = false;
+        let pressedTime;
+
+        let btnDispTime = 1000;
+        let cpu1ThinkingTime = 1000, cpu2ThinkingTime = 1000;
+
+        let fingerImg;
+        let isDraw;
+        let isRightbtn;
+        function setup() {
+            createCanvas(windowWidth, windowHeight);
+            noCursor();
+            pixelDensity(1);
+            btnX[0] = width / 2 - btnW / 2 - btnW;
+            btnX[1] = width / 2 - btnW / 2 + btnW;
+            btnY = height / 2 - btnH / 2;
+            btnAtari = int(random(2, 10));  // 2~9
+            console.log(btnAtari);
+
+            fingerImg = loadImage('https://raw.githubusercontent.com/yoshigai-web/Reinventing-the-Button/main/img/finger_pic.png');
+        }
+
+        function draw() {
+            background(255);
+
+            drawGuide();
+            drawButton();
+            if (isDraw) drawFinger();
+
+            if (btnCount >= btnAtari && !isShoted) {
+                // kurohige shots
+                isShoted = true;
+                let socket = io.connect();
+                socket.emit('kurohigeOn', '0');
+            }
+        }
+        function drawGuide() {
+            let passedTime = millis() - pressedTime;
+            isDraw = false;
+
+            fill(0);
+            textSize(70);
+            textFont('Noto Sans JP');
+            textAlign(CENTER);
+
+            if (btnDispTime < passedTime && passedTime < btnDispTime + cpu1ThinkingTime) {
+                // cpu1 is thinking
+                btnPressed = false;
+                background('#DDF8C9');
+                text("CPU1のターンです", width / 2, height / 2 - 200);
+            } else if (btnDispTime + cpu1ThinkingTime < passedTime && passedTime < btnDispTime * 2 + cpu1ThinkingTime) {
+                // cpu1 pressed
+                btnPressed = true;
+                background('#DDF8C9');
+                text("CPU1のターンです", width / 2, height / 2 - 200);
+            } else if (btnDispTime * 2 + cpu1ThinkingTime < passedTime && passedTime < btnDispTime * 2 + cpu1ThinkingTime + cpu2ThinkingTime) {
+                // cpu2 is thinking
+                btnPressed = false;
+                background('#CCC7E6');
+                text("CPU2のターンです", width / 2, height / 2 - 200);
+            } else if (btnDispTime * 2 + cpu1ThinkingTime + cpu2ThinkingTime < passedTime && passedTime < btnDispTime * 3 + cpu1ThinkingTime + cpu2ThinkingTime) {
+                // cpu2 pressed
+                btnPressed = true;
+                background('#CCC7E6');
+                text("CPU2のターンです", width / 2, height / 2 - 200);
+            } else if (btnDispTime * 3 + cpu1ThinkingTime + cpu2ThinkingTime < passedTime && passedTime < btnDispTime * 3 + cpu1ThinkingTime + cpu2ThinkingTime + 1000) {
+                btnPressed = false;
+                background(255);
+                text("あなたのターンです", width / 2, height / 2 - 200);
+            } else {
+                background(255);
+                text("あなたのターンです", width / 2, height / 2 - 200);
+                isDraw = true;
+            }
+        }
+
+        function drawButton() {
+            for (let i = 0; i < btnX.length; i++) {
+                if (btnPressed) fill('#F39C91');
+                else fill(255);
+                strokeWeight(5);
+                rect(btnX[i], btnY, btnW, btnH, 10);
+            }
+        }
+        function drawFinger() {
+            if (btnPressed) {
+                push();
+                if (isRightbtn) translate(btnX[0], btnY + btnH / 2);
+                else translate(btnX[1], btnY + btnH / 2);
+                image(fingerImg, -250, -25, 284 * 2.5, 497 * 2.5);
+                pop();
+            }else{
+                push();
+                    translate(width/2, btnY + btnH / 2);
+                image(fingerImg, -350, 100, 284 * 2.5, 497 * 2.5);
+                pop();
+            }
+        }
+
+        function touchStarted() {
+            if (touches.length > 0) {
+                let touchX = touches[0].x, touchY = touches[0].y;
+                if ((btnX[0] < touchX && touchX < btnX[0] + btnW && btnY < touchY && touchY < btnY + btnH && !btnPressed) ||
+                    (btnX[1] < touchX && touchX < btnX[1] + btnW && btnY < touchY && touchY < btnY + btnH && !btnPressed)) {
+                    let passedTime = millis() - pressedTime;
+                    if (pressedTime == null || passedTime > btnDispTime * 3 + cpu1ThinkingTime + cpu2ThinkingTime + 1000) {
+                        btnPressed = true;
+                        pressedTime = millis();
+                        btnCount++;
+
+                        cpu1ThinkingTime = random(500, 3000);
+                        cpu2ThinkingTime = random(500, 3000);
+                        console.log(cpu1ThinkingTime, cpu2ThinkingTime);
+
+                        isRightbtn = btnX[1] < touchX && touchX < btnX[1] + btnW && btnY < touchY && touchY < btnY + btnH;
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+</body>
